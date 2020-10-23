@@ -3,9 +3,13 @@
     border: 2px solid #FFFFFF;
     width: 150px;
     height: 50px;
-    /* grid-row: span 2; */
-    /* grid-row-start: 1;
-    grid-row-end: 3; */
     align-self: center;
     justify-self: end;
 }
+@media screen and (max-width: 670px) {
+    .profile__add-button {
+        justify-self: center;
+        width: 282px;
+        margin-top: 36px;
+    } 
+    }
