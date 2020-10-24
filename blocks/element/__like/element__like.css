@@ -3,9 +3,9 @@
     width: 20.76px;
     height: 18.13px;
     border-style: none;
-    background-position: center;
     justify-self: end;
     margin-right: 22.24px;
     align-self: flex-end;
     outline: none;
+    cursor: pointer;
 }
