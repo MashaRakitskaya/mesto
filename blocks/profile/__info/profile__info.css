@@ -6,7 +6,7 @@
     align-self: center;
     gap: 16px;
 }
-@media screen and (max-width: 670px) {
+@media screen and (max-width: 730px) {
     .profile__info {
         /* padding-top: 10.25px; */
         margin-top: 10.25px;

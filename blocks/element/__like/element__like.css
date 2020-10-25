@@ -5,7 +5,11 @@
     border-style: none;
     justify-self: end;
     margin-right: 22.24px;
-    align-self: flex-end;
+    align-self: center;
     outline: none;
     cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+.element__like:hover {
+    opacity: 0.8;
 }

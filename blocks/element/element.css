@@ -1,19 +1,9 @@
-/* .element {
-    display: grid;
-    grid-template-columns: 1fr, 1fr;
-    grid-template-rows: 1fr, 1fr;
-    gap: 25px;
-    background: #FFFFFF;
-    border-radius: 10px;
-    padding-bottom: 31px;
-} */
-
 .element {
-    display: grid;
-    grid-template-columns: 1fr, 1fr;
-    grid-template-rows: 1fr, 1fr;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr minmax(min-content, max-content); */
     background: #FFFFFF;
     border-radius: 10px;
-    gap: 25px;
-    padding-bottom: 31px;
+    /* gap: 25px; */
+    /* padding-bottom: 31px; */
 }
