@@ -1,0 +1,15 @@
+.popup__title-field {
+    /* margin-left: 36px;
+    margin-right: 36px; */
+    /* margin-right: auto;
+    margin-left: auto; */
+    width: 358px;
+    margin: 0px;
+    padding: 0px;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+    margin: 0 auto;
+    /* border-bottom: 1px solid #545454; */
+}
