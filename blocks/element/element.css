@@ -1,0 +1,9 @@
+.element {
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr minmax(min-content, max-content); */
+    background: #FFFFFF;
+    border-radius: 10px;
+    /* gap: 25px; */
+    /* padding-bottom: 31px; */
+}

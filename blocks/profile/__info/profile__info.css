@@ -1,0 +1,17 @@
+.profile__info {
+    /* grid-row: span 2;  */
+    display: grid;
+    grid-template-columns: minmax(min-content, max-content) 1fr;
+    grid-template-rows: minmax(min-content, max-content) 1fr;
+    align-self: center;
+    gap: 16px;
+}
+@media screen and (max-width: 730px) {
+    .profile__info {
+        /* padding-top: 10.25px; */
+        margin-top: 10.25px;
+        justify-self: center;
+        gap: 14px 1px;
+        /* grid-column: span 2; */
+    } 
+    }
