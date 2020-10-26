@@ -10,6 +10,15 @@
     font-size: 18px;
     line-height: 22px;
     background: #000000;
-    margin-left: 36px;
-    margin-right: 36px;
+    transition: opacity 0.2s ease;
+}
+.popup__save:hover {
+    opacity: 0.8;
+}
+@media screen and (max-width: 730px) {
+    .popup__save {
+        width: 100%;
+        font-size: 14px;
+        line-height: 17px;
+    }
 }
