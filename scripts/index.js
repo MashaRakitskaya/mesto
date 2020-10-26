@@ -4,13 +4,13 @@ let editButton = document.querySelector('.profile__edit-button');
 let profileTitle = document.querySelector('.profile__title');
 let profileParagraph = document.querySelector('.profile__paragraph');
 let form = popup.querySelector('.popup__form');
-let titleField = popup.querySelector('.popup__title-field');
-let paragraphFfield = popup.querySelector('.popup__paragraph-field');
+let nameField = popup.querySelector('.popup__input_type_name');
+let titleField = popup.querySelector('.popup__input_type_title');
 
 function showPopup() {
     popup.classList.add('popup_opened');
-    titleField.value = profileTitle.textContent;
-    paragraphFfield.value = profileParagraph.textContent;
+    nameField.value = profileTitle.textContent;
+    titleField.value = profileParagraph.textContent;
 }
 
 function closePopup() {
@@ -20,8 +20,8 @@ function closePopup() {
 function submitForm(event) {
     event.preventDefault();
     // console.log(titleField.value);
-    profileTitle.textContent = titleField.value;
-    profileParagraph.textContent = paragraphFfield.value;
+    profileTitle.textContent = nameField.value;
+    profileParagraph.textContent = titleField.value;
 }
 
 editButton.addEventListener('click', showPopup);
