@@ -8,10 +8,8 @@
 }
 @media screen and (max-width: 730px) {
     .profile__info {
-        /* padding-top: 10.25px; */
-        margin-top: 10.25px;
+        margin-top: 22.25px;
         justify-self: center;
-        gap: 14px 1px;
-        /* grid-column: span 2; */
+        gap: 14px 10px;
     } 
     }

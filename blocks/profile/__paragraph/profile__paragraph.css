@@ -10,10 +10,7 @@
     .profile__paragraph {
         font-size: 14px;
         line-height: 17px;
-        /* justify-content: center; */
         justify-self: center;
-        /* align-items: center; */
         grid-column: span 2;
-        /* margin-top: 13px; */
     } 
     }

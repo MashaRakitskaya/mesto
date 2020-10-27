@@ -1,14 +1,5 @@
-/* .element__image {
-    grid-column: span 2;
-    width: 100%;
-    border-radius: 10px 10px 0px 0px;
-    max-height: 282px;
-    object-fit: cover;
-} */
 .element__image {
     width: 100%;
     object-fit: cover;
     border-radius: 10px 10px 0px 0px;
-    /* grid-column: span 2; */
-    /* background-size: cover; */
 }
