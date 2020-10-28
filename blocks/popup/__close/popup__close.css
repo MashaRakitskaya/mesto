@@ -1,7 +1,5 @@
 .popup__close {
     background: url(../../../images/close.svg) no-repeat 50%;
-    /* object-fit: contain; */
-    background-size: contain;
     width: 40px;
     height: 40px;
     border: none;

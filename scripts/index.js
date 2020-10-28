@@ -6,7 +6,6 @@ let profileParagraph = document.querySelector('.profile__paragraph');
 let form = popup.querySelector('.popup__form');
 let nameField = popup.querySelector('.popup__input_type_name');
 let titleField = popup.querySelector('.popup__input_type_title');
-let save = popup.querySelector('.popup__save');
 
 function showPopup() {
     popup.classList.add('popup_opened');
@@ -23,9 +22,10 @@ function submitForm(event) {
     // console.log(titleField.value);
     profileTitle.textContent = nameField.value;
     profileParagraph.textContent = titleField.value;
+    closePopup();
 }
 
-save.addEventListener('click',closePopup);
 editButton.addEventListener('click', showPopup);
 popupCloseButton.addEventListener('click', closePopup);
 form.addEventListener('submit', submitForm);
+
