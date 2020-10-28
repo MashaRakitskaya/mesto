@@ -1,5 +1,7 @@
 .popup__close {
     background: url(../../../images/close.svg) no-repeat 50%;
+    /* object-fit: contain; */
+    background-size: contain;
     width: 40px;
     height: 40px;
     border: none;
@@ -18,6 +20,8 @@
 
 @media screen and (max-width: 730px) {
     .popup__close {
+        width: 26px;
+        height: 26px;
         top: -53.62px;
         right: 0px;
     }
