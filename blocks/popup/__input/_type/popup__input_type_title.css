@@ -1,17 +1,4 @@
 .popup__input_type_title{
-    margin: 0px;
-    margin-bottom: 48px;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 17px;
-    color: #000000;
-    border: none;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-    outline: none;
-    padding-bottom: 13px;
+   
 }
-@media screen and (max-width: 730px) {
-    .popup__input_type_title {
-        margin-bottom: 45px;
-    }
-}
+

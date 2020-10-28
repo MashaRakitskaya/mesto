@@ -5,6 +5,10 @@
     font-size: 18px;
     line-height: 22px;
     color: #FFFFFF;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 336px;
 }
 @media screen and (max-width: 730px) {
     .profile__paragraph {
@@ -12,5 +16,6 @@
         line-height: 17px;
         justify-self: center;
         grid-column: span 2;
+        max-width: 282px;
     } 
     }
