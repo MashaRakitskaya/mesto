@@ -1,4 +1,4 @@
-.element__like {
+.template__like {
     background: url('../../../images/like.svg');
     width: 20.76px;
     height: 18.13px;
@@ -10,6 +10,6 @@
     cursor: pointer;
     transition: opacity 0.2s ease;
 }
-.element__like:hover {
+.template__like:hover {
     opacity: 0.8;
 }
