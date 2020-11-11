@@ -6,12 +6,13 @@ let popupPhotoCloseButton = document.querySelector('.popup__close_type_plose-pho
 let editButton = document.querySelector('.profile__edit-button');
 let profileTitle = document.querySelector('.profile__title');
 let profileParagraph = document.querySelector('.profile__paragraph');
-let form = popup.querySelector('.popup__form');
+let editForm = popup.querySelector('.popup__form');
+let addPhotoForm = document.querySelector('.popup__form_type_add-photo');
 let nameField = popup.querySelector('.popup__input_type_name');
 let titleField = popup.querySelector('.popup__input_type_title');
 const addButton = document.querySelector('.profile__add-button');
-const place = popup.querySelector('.popup__input_type_place');
-const photo = popup.querySelector('.popup__input_type_photo');
+const place = document.querySelector('.popup__input_type_place');
+const photoLink = document.querySelector('.popup__input_type_photo');
 
 const initialCards = [
     {
@@ -53,36 +54,30 @@ function createdNewCard(item) {
     photo.src = item.link;
     title.textContent = item.name;
     card.querySelector('.template__image').alt = item.name;
-    
-    // photo.addEventListener('click', () => handlePhotoClick(item));
-
+    // if (isPrepend){
+    //     element.prepend(card);  
+    // } else {
+    //     element.append(card);
+    // }
     element.append(card);
-}
+    // element.prepend(card);
 
-// function handlePhotoClick(item) {
-//     photo;
-// }
+    
+}
 
 initialCards.forEach(createdNewCard);
 
+// addPhotoForm.addEventListener('submit', event => {
+//     event.preventDefault();
+//     closePopup(popupAddPhoto);
+// })
 
-
-//функиция открытия попапа
-// function showPopup() {
-//     popup.classList.add('popup_opened'); // у нас popap display: none; чтобы не было его видно , а у popup_opened display: flex;
-//     nameField.value = profileTitle.textContent; // передаем значение имя в окно имени попапа
-//     titleField.value = profileParagraph.textContent; // передаем значение профессии в окно имени попапа
-// }
 
 function profileValue() {
     nameField.value = profileTitle.textContent;
     titleField.value = profileParagraph.textContent; 
 }
 
-// function cardValue() {
-//     place.textContent = "Название";
-//     photo.textContent = "Ссылка на картинку";
-// }
 
 function showPopup(showPopup) {
     showPopup.classList.add('popup_opened');
@@ -94,13 +89,13 @@ function closePopup(closePopup) {
 }
 
 //функиция сабимта формы и закрытия попапа
-function submitForm(event) {
-    event.preventDefault();
-    // console.log(titleField.value);
-    profileTitle.textContent = nameField.value; // то что написали в имени окна попапа переноситься на главную страницу
-    profileParagraph.textContent = titleField.value; // то что написали в професии окна попапа переноситься на главную страницу
-    closePopup(); // выпрлнить функицю закрытия попапа
-}
+// function submitForm(event) {
+//     event.preventDefault();
+//     // console.log(titleField.value);
+//     profileTitle.textContent = nameField.value; // то что написали в имени окна попапа переноситься на главную страницу
+//     profileParagraph.textContent = titleField.value; // то что написали в професии окна попапа переноситься на главную страницу
+//     closePopup(); // выпрлнить функицю закрытия попапа
+// }
 
 // editButton.addEventListener('click', showPopup); // нажимаем на кнопку и попап открывается
 editButton.addEventListener('click', function() {
@@ -120,7 +115,35 @@ popupPhotoCloseButton.addEventListener('click', function() {
     closePopup(popupAddPhoto);
 });
 
-form.addEventListener('submit', submitForm); // нажимаем энтер и данные из имени и должности созраняюстя и попап закрывается
+editForm.addEventListener('submit', event => {
+    event.preventDefault();
+    profileTitle.textContent = nameField.value;
+    profileParagraph.textContent = titleField.value;
+    closePopup(popupEditProfile);
+});
 
 
 
+
+addPhotoForm.addEventListener('submit', event => {
+    event.preventDefault();
+    createdNewCard({
+        name: place.value,
+        link: photoLink.value
+    });
+    // element.prepend(createdNewCard({
+    //     name: place.value,
+    //     link: photoLink.value
+    // }));
+
+    closePopup(popupAddPhoto);
+    
+});
+
+
+// document.querySelector('.template__title').textContent = place.textContent;
+//     document.querySelector('.template__image').src = photoLink.src;
+//     createdNewCard;
+
+//initialCards.unshift();
+// addPhotoForm.reset();
