@@ -33,29 +33,31 @@ const initialCards = [
     }
 ];
 
-// const element = document.querySelector('.element');
-// const cardTemplate = document.querySelector('.element').content;
 
-// function createdNewCard(item) {
-//     const card = cardTemplate.cloneNode(true);
-//     card.querySelector('.template__image').src = item.link;
-//     card.querySelector('.template__image').alt = item.name;
-//     card.querySelector('.template__title').textContent = item.name;
-//     element.append(card);
-// }
-// initialCards.forEach(createdNewCard);
 
-const elements = document.querySelector('.elements');
-const cardTemplate = document.querySelector('.element').content.querySelector('.template');
+const element = document.querySelector('.element');
+const cardTemplate = document.querySelector('#card-template').content.querySelector('.template');
 
 function createdNewCard(item) {
     const card = cardTemplate.cloneNode(true);
-    card.querySelector('.template__image').src = item.link;
+    const photo = card.querySelector('.template__image');
+    const title = card.querySelector('.template__title');
+
+    photo.src = item.link;
+    title.textContent = item.name;
     card.querySelector('.template__image').alt = item.name;
-    card.querySelector('.template__title').textContent = item.name;
-    elements.append(card);
+    
+    // photo.addEventListener('click', () => handlePhotoClick(item));
+
+    element.append(card);
 }
+
+// function handlePhotoClick(item) {
+//     photo;
+// }
+
 initialCards.forEach(createdNewCard);
+
 
 
 //функиция открытия попапа
@@ -85,11 +87,3 @@ form.addEventListener('submit', submitForm); // нажимаем энтер и �
 
 
 
-
-// const cardTemplate = document.querySelector('.element').content.querySelector('.template');
-
-// initialCards.forEach((el) => {
-//     const card = cardTemplate.cloneNode(true);
-//     card.querySelector('.template__image').src = el.link;
-//     card.querySelector('.template__title').textContent = el.name;
-// });
