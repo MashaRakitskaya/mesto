@@ -2,9 +2,10 @@ let popup = document.querySelector('.popup');
 let popupEditProfile = document.querySelector('.popup_type_edit-profile');
 let popupAddPhoto = document.querySelector('.popup_type_add-photo');
 let popupCloseButton = popup.querySelector('.popup__close');
-let popupPhotoCloseButton = document.querySelector('.popup__close_type_plose-photo');
+let popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
 let editButton = document.querySelector('.profile__edit-button');
 let profileTitle = document.querySelector('.profile__title');
+const popupBigPhoto = document.querySelector('.popup_type_big-photo');
 let profileParagraph = document.querySelector('.profile__paragraph');
 let editForm = popup.querySelector('.popup__form');
 let addPhotoForm = document.querySelector('.popup__form_type_add-photo');
@@ -13,6 +14,11 @@ let titleField = popup.querySelector('.popup__input_type_title');
 const addButton = document.querySelector('.profile__add-button');
 const place = document.querySelector('.popup__input_type_place');
 const photoLink = document.querySelector('.popup__input_type_photo');
+const popupPhoto =document.querySelector('.popup__photo');
+const caption = document.querySelector('.popup__caption ');
+const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
+// const popupBigPhoto = document.querySelector('.popup_type_big-photo');
+
 
 const initialCards = [
     {
@@ -67,6 +73,17 @@ function createdNewCard(item, isPrepend) {
     card.querySelector('.element__basket').addEventListener('click', event => {
         event.target.closest('.element').remove();
     });
+
+    photo.addEventListener('click', event => {
+        popupPhoto.src = event.target.src;
+        caption.textContent = event.target.alt;
+        showPopup(popupBigPhoto);
+    });
+
+    closeBigFoto.addEventListener('click', function() {
+        closePopup(popupBigPhoto);
+    });
+
 };
 
 initialCards.forEach(createdNewCard);
@@ -113,6 +130,9 @@ popupCloseButton.addEventListener('click', function() {
 popupPhotoCloseButton.addEventListener('click', function() {
     closePopup(popupAddPhoto);
 });
+
+
+
 
 editForm.addEventListener('submit', event => {
     event.preventDefault();
