@@ -60,10 +60,13 @@ function createdNewCard(item, isPrepend) {
         elements.prepend(card);
     }
     
-card.querySelector('.element__like').addEventListener('click', event => {
-    event.target.classList.toggle('element__like_pressed');
-});
+    card.querySelector('.element__like').addEventListener('click', event => {
+        event.target.classList.toggle('element__like_pressed');
+    });
     
+    card.querySelector('.element__basket').addEventListener('click', event => {
+        event.target.closest('.element').remove();
+    });
 };
 
 initialCards.forEach(createdNewCard);
