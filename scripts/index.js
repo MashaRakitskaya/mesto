@@ -60,9 +60,11 @@ function createdNewCard(item, isPrepend) {
         elements.prepend(card);
     }
     
-
+card.querySelector('.element__like').addEventListener('click', event => {
+    event.target.classList.toggle('element__like_pressed');
+});
     
-}
+};
 
 initialCards.forEach(createdNewCard);
 
@@ -70,17 +72,17 @@ initialCards.forEach(createdNewCard);
 function profileValue() {
     nameField.value = profileTitle.textContent;
     titleField.value = profileParagraph.textContent; 
-}
+};
 
 
 function showPopup(showPopup) {
     showPopup.classList.add('popup_opened');
-}
+};
 
 //функиция закрытия попапа
 function closePopup(closePopup) {
     closePopup.classList.remove('popup_opened'); // удаляем popup_opened display: flex; и остается none
-}
+};
 
 //функиция сабимта формы и закрытия попапа
 // function submitForm(event) {
