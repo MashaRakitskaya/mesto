@@ -43,34 +43,28 @@ const initialCards = [
 
 
 
-const element = document.querySelector('.element');
-const cardTemplate = document.querySelector('#card-template').content.querySelector('.template');
+const elements = document.querySelector('.elements');
+const cardTemplate = document.querySelector('#card-template').content.querySelector('.element');
 
-function createdNewCard(item) {
+function createdNewCard(item, isPrepend) {
     const card = cardTemplate.cloneNode(true);
-    const photo = card.querySelector('.template__image');
-    const title = card.querySelector('.template__title');
+    const photo = card.querySelector('.element__image');
+    const title = card.querySelector('.element__title');
 
     photo.src = item.link;
     title.textContent = item.name;
-    card.querySelector('.template__image').alt = item.name;
-    // if (isPrepend){
-    //     element.prepend(card);  
-    // } else {
-    //     element.append(card);
-    // }
-    element.append(card);
-    // element.prepend(card);
+    card.querySelector('.element__image').alt = item.name;
+    if (isPrepend) {
+        elements.append(card);  
+    } else {
+        elements.prepend(card);
+    }
+    
 
     
 }
 
 initialCards.forEach(createdNewCard);
-
-// addPhotoForm.addEventListener('submit', event => {
-//     event.preventDefault();
-//     closePopup(popupAddPhoto);
-// })
 
 
 function profileValue() {
@@ -123,27 +117,13 @@ editForm.addEventListener('submit', event => {
 });
 
 
-
-
 addPhotoForm.addEventListener('submit', event => {
     event.preventDefault();
     createdNewCard({
         name: place.value,
         link: photoLink.value
     });
-    // element.prepend(createdNewCard({
-    //     name: place.value,
-    //     link: photoLink.value
-    // }));
-
+    
     closePopup(popupAddPhoto);
     
 });
-
-
-// document.querySelector('.template__title').textContent = place.textContent;
-//     document.querySelector('.template__image').src = photoLink.src;
-//     createdNewCard;
-
-//initialCards.unshift();
-// addPhotoForm.reset();
