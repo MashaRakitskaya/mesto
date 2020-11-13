@@ -1,3 +1,5 @@
-.popup__input_type_place {
-    
+@media screen and (max-width: 730px) {
+    .popup__input_type_place {
+        margin-bottom: 20px;
+    }   
 }

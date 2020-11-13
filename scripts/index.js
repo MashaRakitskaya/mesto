@@ -17,7 +17,6 @@ const photoLink = document.querySelector('.popup__input_type_photo');
 const popupPhoto =document.querySelector('.popup__photo');
 const caption = document.querySelector('.popup__caption ');
 const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
-// const popupBigPhoto = document.querySelector('.popup_type_big-photo');
 
 
 const initialCards = [
@@ -104,16 +103,6 @@ function closePopup(closePopup) {
     closePopup.classList.remove('popup_opened'); // удаляем popup_opened display: flex; и остается none
 };
 
-//функиция сабимта формы и закрытия попапа
-// function submitForm(event) {
-//     event.preventDefault();
-//     // console.log(titleField.value);
-//     profileTitle.textContent = nameField.value; // то что написали в имени окна попапа переноситься на главную страницу
-//     profileParagraph.textContent = titleField.value; // то что написали в професии окна попапа переноситься на главную страницу
-//     closePopup(); // выпрлнить функицю закрытия попапа
-// }
-
-// editButton.addEventListener('click', showPopup); // нажимаем на кнопку и попап открывается
 editButton.addEventListener('click', function() {
     showPopup(popupEditProfile);
     profileValue();
