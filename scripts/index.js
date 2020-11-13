@@ -98,9 +98,8 @@ function showPopup(showPopup) {
     showPopup.classList.add('popup_opened');
 };
 
-//функиция закрытия попапа
 function closePopup(closePopup) {
-    closePopup.classList.remove('popup_opened'); // удаляем popup_opened display: flex; и остается none
+    closePopup.classList.remove('popup_opened'); 
 };
 
 editButton.addEventListener('click', function() {
