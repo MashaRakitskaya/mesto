@@ -137,6 +137,9 @@ addPhotoForm.addEventListener('submit', event => {
         link: photoLink.value
     });
     
+    place.value = '';
+    photoLink.value = '';
+    
     closePopup(popupAddPhoto);
     
 });
