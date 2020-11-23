@@ -16,6 +16,7 @@ const hideError = (formElement, inputElement,) => {
     formError.textContent = '';
 };
 
+// проверить действительность ввода
 const checkInputValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
       // Если поле не проходит валидацию, покажем ошибку
@@ -26,15 +27,16 @@ const checkInputValidity = (formElement, inputElement) => {
     }
 };
 
-
+//имеет неверный ввод
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
 };
 
-
+//переключить состояние кнопки
 const toggleButtonState = (inputList, buttonElement) => {
+    console.log(hasInvalidInput(inputList));
     if (hasInvalidInput(inputList)) {
       buttonElement.classList.add('popup__save_disabled');
       buttonElement.disabled = true;
@@ -44,12 +46,12 @@ const toggleButtonState = (inputList, buttonElement) => {
     }
 };
 
-
+//установить слушателей событий
 const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
     const buttonElement = formElement.querySelector('.popup__save');
     toggleButtonState(inputList, buttonElement);
-    
+
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
             checkInputValidity(formElement, inputElement);
@@ -58,6 +60,7 @@ const setEventListeners = (formElement) => {
     });
 };
 
+//включить проверку
 const enableValidation = () => {
     const formList = Array.from(document.querySelectorAll('.popup__form'));
     formList.forEach((formElement) => {

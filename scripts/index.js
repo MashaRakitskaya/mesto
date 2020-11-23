@@ -1,4 +1,4 @@
-let popup = document.querySelector('.popup');
+const popup = document.querySelector('.popup');
 let popupEditProfile = document.querySelector('.popup_type_edit-profile');
 let popupAddPhoto = document.querySelector('.popup_type_add-photo');
 let popupCloseButton = popup.querySelector('.popup__close');
@@ -17,6 +17,7 @@ const photoLink = document.querySelector('.popup__input_type_photo');
 const popupPhoto =document.querySelector('.popup__photo');
 const caption = document.querySelector('.popup__caption ');
 const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
+const activePopup = document.querySelector('.popup_opened');
 
 
 const initialCards = [
@@ -99,8 +100,27 @@ function showPopup(showPopup) {
 };
 
 function closePopup(closePopup) {
-    closePopup.classList.remove('popup_opened'); 
+    closePopup.classList.remove('popup_opened');
 };
+
+
+
+//закрытие попапов при нажатии ESC
+const closePopupByESC = (event) => {
+    if (event.keyCode == 27) {
+        closePopup(popupEditProfile);
+        closePopup(popupAddPhoto);
+        closePopup(popupBigPhoto);
+    }
+};
+
+document.addEventListener('keyup', closePopupByESC);
+
+
+
+
+
+
 
 editButton.addEventListener('click', function() {
     showPopup(popupEditProfile);
