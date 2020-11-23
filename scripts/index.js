@@ -17,7 +17,9 @@ const photoLink = document.querySelector('.popup__input_type_photo');
 const popupPhoto =document.querySelector('.popup__photo');
 const caption = document.querySelector('.popup__caption ');
 const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
-const activePopup = document.querySelector('.popup_opened');
+
+const popupContent = document.querySelector('.popup__content');
+
 
 
 const initialCards = [
@@ -115,6 +117,33 @@ const closePopupByESC = (event) => {
 };
 
 document.addEventListener('keyup', closePopupByESC);
+
+
+
+
+
+
+
+
+
+
+
+//закрытие попапов кликом на overlay
+const closePopupByOverlay = function (event) {
+    if (event.target.classList.contains('popup')) {
+        closePopup(popupEditProfile);
+        closePopup(popupAddPhoto);
+        closePopup(popupBigPhoto);
+    }
+};
+
+popupEditProfile.addEventListener('click', closePopupByOverlay);
+
+popupAddPhoto.addEventListener('click', closePopupByOverlay);
+
+popupBigPhoto.addEventListener('click', closePopupByOverlay);
+
+
 
 
 
