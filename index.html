@@ -38,10 +38,14 @@
                     <button class="popup__close" type="button"></button>
                    <h3 class="popup__title">Редактировать профиль</h3>
                    <form class="popup__form" name="editProfileForm" novalidate>
-                        <input id='name-input' class="popup__input popup__input_type_name" type="text" name="profileName" minlength="2"  maxlength="40" required>
-                        <span id="name-input-error" class="popup__input-error"></span>
-                        <input id='occupation-input' class="popup__input popup__input_type_title" type="text" name="occupation" minlength="2"  maxlength="200" required>
-                        <span id="occupation-input-error" class="popup__input-error"></span>
+                        <label class="popup__input-label" for="name-input">
+                            <input id='name-input' class="popup__input popup__input_type_name" type="text" name="profileName" minlength="2"  maxlength="40" required>
+                            <span id="name-input-error" class="popup__input-error"></span>
+                        </label>
+                        <label class="popup__input-label" for="occupation-input">
+                            <input id='occupation-input' class="popup__input popup__input_type_title" type="text" name="occupation" minlength="2"  maxlength="200" required>
+                            <span id="occupation-input-error" class="popup__input-error"></span>
+                        </label>
                         <button type="submit" class="popup__save">Сохранить</button>
                    </form>
                </div>
@@ -52,11 +56,17 @@
                 <button class="popup__close popup__close_type_close-photo" type="button"></button>
                <h3 class="popup__title popup__title_type_place">Новое место</h3>
                <form class="popup__form popup__form_type_add-photo" name="editProfileForm" novalidate>
-                    <input id='place-input' class="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minlength="2"  maxlength="30" required>
-                    <span id="place-input-error" class="popup__input-error"></span>
-                    <input id='url-input' class="popup__input popup__input_type_photo" type="url" name="photo" placeholder="Ссылка на картинку" required>
-                    <span id="url-input-error" class="popup__input-error"></span>
-                    <button type="submit" class="popup__save popup__save_type_photo">Создать</button>
+                   <label class="popup__input-label" for="place-input">
+                        <input id='place-input' class="popup__input popup__input_type_place" type="text" name="place" placeholder="Название" minlength="2"  maxlength="30" required>
+                        <span id="place-input-error" class="popup__input-error"></span>
+                   </label>
+                    
+                    <label class="popup__input-label" for="url-input">
+                        <input id='url-input' class="popup__input popup__input_type_photo" type="url" name="photo" placeholder="Ссылка на картинку" required>
+                        <span id="url-input-error" class="popup__input-error"></span>
+                    </label>
+                    
+                    <button disabled type="submit" class="popup__save popup__save_type_photo popup__save_disabled">Создать</button>
                </form> 
            </div>
         </div>
