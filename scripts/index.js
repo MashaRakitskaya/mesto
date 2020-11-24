@@ -121,13 +121,6 @@ document.addEventListener('keyup', closePopupByESC);
 
 
 
-
-
-
-
-
-
-
 //закрытие попапов кликом на overlay
 const closePopupByOverlay = function (event) {
     if (event.target.classList.contains('popup')) {
@@ -142,10 +135,6 @@ popupEditProfile.addEventListener('click', closePopupByOverlay);
 popupAddPhoto.addEventListener('click', closePopupByOverlay);
 
 popupBigPhoto.addEventListener('click', closePopupByOverlay);
-
-
-
-
 
 
 

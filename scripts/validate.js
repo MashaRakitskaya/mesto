@@ -32,7 +32,7 @@ const hasInvalidInput = (inputList) => {
 
 //переключить состояние кнопки
 const toggleButtonState = (inputList, buttonElement, config) => {
-    console.log(hasInvalidInput(inputList));
+    // console.log(hasInvalidInput(inputList));
     if (hasInvalidInput(inputList)) {
       buttonElement.classList.add(config.buttonInvalidClass);
       buttonElement.disabled = true;
