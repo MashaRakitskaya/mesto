@@ -1,24 +1,24 @@
 const popup = document.querySelector('.popup');
-let popupEditProfile = document.querySelector('.popup_type_edit-profile');
-let popupAddPhoto = document.querySelector('.popup_type_add-photo');
-let popupCloseButton = popup.querySelector('.popup__close');
-let popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
-let editButton = document.querySelector('.profile__edit-button');
-let profileTitle = document.querySelector('.profile__title');
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const popupAddPhoto = document.querySelector('.popup_type_add-photo');
+const popupCloseButton = popup.querySelector('.popup__close');
+const popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
+const editButton = document.querySelector('.profile__edit-button');
+const profileTitle = document.querySelector('.profile__title');
 const popupBigPhoto = document.querySelector('.popup_type_big-photo');
-let profileParagraph = document.querySelector('.profile__paragraph');
-let editForm = popup.querySelector('.popup__form');
-let addPhotoForm = document.querySelector('.popup__form_type_add-photo');
-let nameField = popup.querySelector('.popup__input_type_name');
-let titleField = popup.querySelector('.popup__input_type_title');
+const profileParagraph = document.querySelector('.profile__paragraph');
+const editForm = popup.querySelector('.popup__form');
+const addPhotoForm = document.querySelector('.popup__form_type_add-photo');
+const nameField = popup.querySelector('.popup__input_type_name');
+const titleField = popup.querySelector('.popup__input_type_title');
 const addButton = document.querySelector('.profile__add-button');
 const place = document.querySelector('.popup__input_type_place');
 const photoLink = document.querySelector('.popup__input_type_photo');
-const popupPhoto =document.querySelector('.popup__photo');
+const popupPhoto = document.querySelector('.popup__photo');
 const caption = document.querySelector('.popup__caption ');
 const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 
-const popupContent = document.querySelector('.popup__content');
+// const popupContent = document.querySelector('.popup__content');
 
 
 
