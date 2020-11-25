@@ -19,6 +19,9 @@ const caption = document.querySelector('.popup__caption ');
 const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 const escape = 27;
 
+// const buttonSaveTypePhoto = popup.querySelector('.popup__save_type_photo');
+
+
 // const popupContent = document.querySelector('.popup__content');
 
 
@@ -156,11 +159,11 @@ function createCard(item) {
 };
 
 
-function addCard(item, element, isPrepend) {
+function addCard(item, elements, isPrepend) {
     if (isPrepend) {
-        element.prepend(createCard(item));  
+        elements.prepend(createCard(item));  
     } else {
-        element.append(createCard(item));
+        elements.append(createCard(item));
     }
 };
 
@@ -173,8 +176,9 @@ addPhotoForm.addEventListener('submit', event => {
         link: photoLink.value
     }, elements, true);
         
-    // place.value = '';
-    // photoLink.value = '';
+    place.value = '';
+    photoLink.value = '';
+    // document.querySelector('.popup__form').reset();
         
     closePopup(popupAddPhoto);
         
@@ -199,42 +203,43 @@ function profileValue() {
 
 function showPopup(showPopup) {
     showPopup.classList.add('popup_opened');
+    document.addEventListener('keyup', closePopupByESC);
+    const activePopup = document.querySelector('.popup_opened');
+    activePopup.addEventListener('click', closePopupByOverlay);
+    
 };
 
 function closePopup(closePopup) {
+    const activePopup = document.querySelector('.popup_opened');
+    document.removeEventListener('keyup', closePopupByESC);
+    activePopup.removeEventListener('click', closePopupByOverlay);
     closePopup.classList.remove('popup_opened');
 };
-
-
 
 //закрытие попапов при нажатии ESC
 const closePopupByESC = (event) => {
     if (event.keyCode == escape) {
-        closePopup(popupEditProfile);
-        closePopup(popupAddPhoto);
-        closePopup(popupBigPhoto);
+        const activePopup = document.querySelector('.popup_opened'); 
+        closePopup(activePopup);
     }
 };
 
-document.addEventListener('keyup', closePopupByESC);
-
-
+// document.addEventListener('keyup', closePopupByESC);
 
 
 //закрытие попапов кликом на overlay
 const closePopupByOverlay = function (event) {
     if (event.target.classList.contains('popup')) {
-        closePopup(popupEditProfile);
-        closePopup(popupAddPhoto);
-        closePopup(popupBigPhoto);
+        const activePopup = document.querySelector('.popup_opened');
+        closePopup(activePopup);
     }
 };
 
-popupEditProfile.addEventListener('click', closePopupByOverlay);
+// popupEditProfile.addEventListener('click', closePopupByOverlay);
 
-popupAddPhoto.addEventListener('click', closePopupByOverlay);
+// popupAddPhoto.addEventListener('click', closePopupByOverlay);
 
-popupBigPhoto.addEventListener('click', closePopupByOverlay);
+// popupBigPhoto.addEventListener('click', closePopupByOverlay);
 
 
 
@@ -246,6 +251,8 @@ editButton.addEventListener('click', function() {
 });
 
 addButton.addEventListener('click', function() {
+    // buttonSaveTypePhoto.setAttribute('disabled', true);
+    // buttonSaveTypePhoto.classList.add('popup__save_disabled');
     showPopup(popupAddPhoto);
 });
 

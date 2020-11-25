@@ -56,6 +56,11 @@ const setEventListeners = (formElement, config) => {
     });
 };
 
+// const disableButton = (buttonElement, config) => {
+//     buttonElement.classList.add(config.buttonInvalidClass);
+//     buttonElement.disabled = true;
+// };
+
 //включить проверку
 const enableValidation = (config) => {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
