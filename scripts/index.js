@@ -22,6 +22,8 @@ const escape = 27;
 const formPropile = document.querySelector('.popup__form');
 const formPhoto = document.querySelector('.popup__form_type_add-photo');
 
+const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
+
 const initialCards = [
     {
         name: 'Архыз',
@@ -129,7 +131,8 @@ function showPopup(showPopup) {
     document.addEventListener('keyup', closePopupByESC);
     const activePopup = document.querySelector('.popup_opened');
     activePopup.addEventListener('click', closePopupByOverlay);
-    
+    buttonTypeEdit.removeAttribute('disabled');
+    buttonTypeEdit.classList.remove('popup__save_disabled');
 };
 
 function closePopup(closePopup) {
@@ -161,6 +164,12 @@ const closePopupByOverlay = function (event) {
 //ресэт формы
 const resetForm = (form) => {
     form.reset();
+    form.querySelectorAll('.popup__input-error').forEach((span) => {
+        span.textContent = '';
+    });
+    form.querySelectorAll('.popup__input').forEach((input) => {
+        input.classList.remove('popup__input_type_error');
+    });
 };
 
 
