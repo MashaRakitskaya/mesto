@@ -46,7 +46,6 @@ const toggleButtonState = (inputList, buttonElement, config) => {
 const setEventListeners = (formElement, config) => {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
-    // toggleButtonState(inputList, buttonElement, config);
 
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
@@ -56,10 +55,11 @@ const setEventListeners = (formElement, config) => {
     });
 };
 
-// const disableButton = (buttonElement, config) => {
-//     buttonElement.classList.add(config.buttonInvalidClass);
-//     buttonElement.disabled = true;
-// };
+const disableButton = () => {
+  const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
+  buttonSaveTypePhoto.setAttribute('disabled', true);
+  buttonSaveTypePhoto.classList.add('popup__save_disabled');
+};
 
 //включить проверку
 const enableValidation = (config) => {
@@ -68,6 +68,7 @@ const enableValidation = (config) => {
 
         formElement.addEventListener('submit', (event) => {
           event.preventDefault();
+          disableButton();
         });
         
         setEventListeners(formElement, config);

@@ -19,12 +19,8 @@ const caption = document.querySelector('.popup__caption ');
 const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 const escape = 27;
 
-// const buttonSaveTypePhoto = popup.querySelector('.popup__save_type_photo');
-
-
-// const popupContent = document.querySelector('.popup__content');
-
-
+const formPropile = document.querySelector('.popup__form');
+const formPhoto = document.querySelector('.popup__form_type_add-photo');
 
 const initialCards = [
     {
@@ -57,78 +53,6 @@ const initialCards = [
 
 const elements = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#card-template').content.querySelector('.element');
-
-// function createdNewCard(item, isPrepend) {
-//     const card = cardTemplate.cloneNode(true);
-//     const photo = card.querySelector('.element__image');
-//     const title = card.querySelector('.element__title');
-
-//     photo.src = item.link;
-//     title.textContent = item.name;
-//     card.querySelector('.element__image').alt = item.name;
-
-//     if (isPrepend) {
-//         elements.append(card);  
-//     } else {
-//         elements.prepend(card);
-//     }
-    
-//     card.querySelector('.element__like').addEventListener('click', event => {
-//         event.target.classList.toggle('element__like_pressed');
-//     });
-    
-//     card.querySelector('.element__basket').addEventListener('click', event => {
-//         event.target.closest('.element').remove();
-//     });
-
-//     photo.addEventListener('click', event => {
-//         popupPhoto.src = event.target.src;
-//         caption.textContent = event.target.alt;
-//         showPopup(popupBigPhoto);
-//     });
-
-//     closeBigFoto.addEventListener('click', function() {
-//         closePopup(popupBigPhoto);
-//     });
-
-// };
-
-// initialCards.forEach(createdNewCard);
-
-
-
-
-
-// function createdNewCard(item, isPrepend) {
-//     const card = cardTemplate.cloneNode(true);
-//     const photo = card.querySelector('.element__image');
-//     const title = card.querySelector('.element__title');
-
-//     photo.src = item.link;
-//     title.textContent = item.name;
-//     card.querySelector('.element__image').alt = item.name;
-    
-//     if (isPrepend) {
-//         elements.append(card);  
-//     } else {
-//         elements.prepend(card);
-//     }
-    
-//     card.querySelector('.element__like').addEventListener('click', event => {
-//         event.target.classList.toggle('element__like_pressed');
-//     });
-    
-//     card.querySelector('.element__basket').addEventListener('click', event => {
-//         event.target.closest('.element').remove();
-//     });
-
-//     photo.addEventListener('click', event => {
-//         popupPhoto.src = event.target.src;
-//         caption.textContent = event.target.alt;
-//         showPopup(popupBigPhoto);
-//     });
-
-// };
 
 function createCard(item) {
     const card = cardTemplate.cloneNode(true);
@@ -178,7 +102,6 @@ addPhotoForm.addEventListener('submit', event => {
         
     place.value = '';
     photoLink.value = '';
-    // document.querySelector('.popup__form').reset();
         
     closePopup(popupAddPhoto);
         
@@ -214,6 +137,8 @@ function closePopup(closePopup) {
     document.removeEventListener('keyup', closePopupByESC);
     activePopup.removeEventListener('click', closePopupByOverlay);
     closePopup.classList.remove('popup_opened');
+    resetForm(formPropile);
+    resetForm(formPhoto);
 };
 
 //закрытие попапов при нажатии ESC
@@ -224,8 +149,6 @@ const closePopupByESC = (event) => {
     }
 };
 
-// document.addEventListener('keyup', closePopupByESC);
-
 
 //закрытие попапов кликом на overlay
 const closePopupByOverlay = function (event) {
@@ -235,14 +158,10 @@ const closePopupByOverlay = function (event) {
     }
 };
 
-// popupEditProfile.addEventListener('click', closePopupByOverlay);
 
-// popupAddPhoto.addEventListener('click', closePopupByOverlay);
-
-// popupBigPhoto.addEventListener('click', closePopupByOverlay);
-
-
-
+const resetForm = (form) => {
+    form.reset();
+};
 
 
 editButton.addEventListener('click', function() {
@@ -251,8 +170,6 @@ editButton.addEventListener('click', function() {
 });
 
 addButton.addEventListener('click', function() {
-    // buttonSaveTypePhoto.setAttribute('disabled', true);
-    // buttonSaveTypePhoto.classList.add('popup__save_disabled');
     showPopup(popupAddPhoto);
 });
 
@@ -273,18 +190,3 @@ editForm.addEventListener('submit', event => {
     profileParagraph.textContent = titleField.value;
     closePopup(popupEditProfile);
 });
-
-
-// addPhotoForm.addEventListener('submit', event => {
-//     event.preventDefault();
-//     createCard({
-//         name: place.value,
-//         link: photoLink.value
-//     });
-    
-//     // place.value = '';
-//     // photoLink.value = '';
-    
-//     closePopup(popupAddPhoto);
-    
-// });
