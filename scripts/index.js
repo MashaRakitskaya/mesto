@@ -158,7 +158,7 @@ const closePopupByOverlay = function (event) {
     }
 };
 
-
+//ресэт формы
 const resetForm = (form) => {
     form.reset();
 };

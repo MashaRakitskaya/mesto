@@ -55,6 +55,9 @@ const setEventListeners = (formElement, config) => {
     });
 };
 
+
+
+//неактивная кнопка
 const disableButton = () => {
   const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
   buttonSaveTypePhoto.setAttribute('disabled', true);
