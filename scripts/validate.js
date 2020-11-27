@@ -3,7 +3,7 @@ const showError = (formElement, inputElement, errorMessage, config) => {
     inputElement.classList.add(config.inputErrorClass);
     formError.textContent = errorMessage;
     formError.classList.add(config.errorClass);
-}
+};
 
 const hideError = (formElement, inputElement, config) => {
     const formError = formElement.querySelector(`#${inputElement.id}-error`);
@@ -56,10 +56,13 @@ const setEventListeners = (formElement, config) => {
     });
 };
 
+//кнопка в состоянии disabled
 const disableButton = (buttonElement, config) => {
   buttonElement.classList.add(config.buttonInvalidClass);
   buttonElement.disabled = true;
 };
+
+//удаление disabled у кнопки
 const removeDisableButton = (buttonElement, config) => {
   buttonElement.classList.remove(config.buttonInvalidClass);
   buttonElement.disabled = false;
