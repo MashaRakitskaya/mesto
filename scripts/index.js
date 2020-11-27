@@ -23,6 +23,10 @@ const formPropile = document.querySelector('.popup__form');
 const formPhoto = document.querySelector('.popup__form_type_add-photo');
 
 const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
+// const buttonSave = document.querySelector('.popup__save');
+
+
+
 
 const initialCards = [
     {
@@ -60,17 +64,19 @@ function createCard(item) {
     const card = cardTemplate.cloneNode(true);
     const photo = card.querySelector('.element__image');
     const title = card.querySelector('.element__title');
+    const like = card.querySelector('.element__like');
+    const basket = card.querySelector('.element__basket');
 
     photo.src = item.link;
     title.textContent = item.name;
-    card.querySelector('.element__image').alt = item.name;
+    photo.alt = item.name;
 
 
-    card.querySelector('.element__like').addEventListener('click', event => {
+    like.addEventListener('click', event => {
         event.target.classList.toggle('element__like_pressed');
     });
     
-    card.querySelector('.element__basket').addEventListener('click', event => {
+    basket.addEventListener('click', event => {
         event.target.closest('.element').remove();
     });
 
@@ -131,8 +137,6 @@ function showPopup(showPopup) {
     document.addEventListener('keyup', closePopupByESC);
     const activePopup = document.querySelector('.popup_opened');
     activePopup.addEventListener('click', closePopupByOverlay);
-    buttonTypeEdit.removeAttribute('disabled');
-    buttonTypeEdit.classList.remove('popup__save_disabled');
 };
 
 function closePopup(closePopup) {
@@ -174,6 +178,7 @@ const resetForm = (form) => {
 
 
 editButton.addEventListener('click', function() {
+    removeDisableButton(buttonTypeEdit, validationConfig);
     showPopup(popupEditProfile);
     profileValue();
 });

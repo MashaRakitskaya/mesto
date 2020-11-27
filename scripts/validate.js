@@ -34,11 +34,9 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement, config) => {
     // console.log(hasInvalidInput(inputList));
     if (hasInvalidInput(inputList)) {
-      buttonElement.classList.add(config.buttonInvalidClass);
-      buttonElement.disabled = true;
+      disableButton(buttonElement, config);
     } else {
-      buttonElement.classList.remove(config.buttonInvalidClass);
-      buttonElement.disabled = false;
+      removeDisableButton(buttonElement, config);
     }
 };
 
@@ -47,38 +45,45 @@ const setEventListeners = (formElement, config) => {
     const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
     const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
+    toggleButtonState(inputList, buttonElement, config);
+
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
-            checkInputValidity(formElement, inputElement, config);
-            toggleButtonState(inputList, buttonElement, config);
+          
+          checkInputValidity(formElement, inputElement, config);
+          toggleButtonState(inputList, buttonElement, config);
         });
     });
 };
 
-
-
-//неактивная кнопка
-const disableButton = () => {
-  const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
-  buttonSaveTypePhoto.setAttribute('disabled', true);
-  buttonSaveTypePhoto.classList.add('popup__save_disabled');
+const disableButton = (buttonElement, config) => {
+  buttonElement.classList.add(config.buttonInvalidClass);
+  buttonElement.disabled = true;
 };
+const removeDisableButton = (buttonElement, config) => {
+  buttonElement.classList.remove(config.buttonInvalidClass);
+  buttonElement.disabled = false;
+};
+
+
 
 //включить проверку
 const enableValidation = (config) => {
     const formList = Array.from(document.querySelectorAll(config.formSelector));
+    const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
+  
     formList.forEach((formElement) => {
-
+        
         formElement.addEventListener('submit', (event) => {
           event.preventDefault();
-          disableButton();
+          disableButton(buttonSaveTypePhoto, config);
         });
+
         
         setEventListeners(formElement, config);
 
     });
 };
-
 
 
 
@@ -88,7 +93,8 @@ const validationConfig = {
   submitButtonSelector: '.popup__save',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error',
-  buttonInvalidClass: 'popup__save_disabled', 
+  buttonInvalidClass: 'popup__save_disabled'
 };
 
 enableValidation(validationConfig); 
+
