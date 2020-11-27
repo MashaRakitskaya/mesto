@@ -24,6 +24,7 @@ const formPhoto = document.querySelector('.popup__form_type_add-photo');
 
 const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 // const buttonSave = document.querySelector('.popup__save');
+const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
 
 
 
@@ -184,6 +185,7 @@ editButton.addEventListener('click', function() {
 });
 
 addButton.addEventListener('click', function() {
+    disableButton(buttonSaveTypePhoto, validationConfig);
     showPopup(popupAddPhoto);
 });
 
