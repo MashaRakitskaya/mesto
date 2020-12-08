@@ -35,7 +35,7 @@ const popupCloseButton = popup.querySelector('.popup__close');
 const popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
 const editButton = document.querySelector('.profile__edit-button');
 const profileTitle = document.querySelector('.profile__title');
-const popupBigPhoto = document.querySelector('.popup_type_big-photo');
+export const popupBigPhoto = document.querySelector('.popup_type_big-photo');
 const profileParagraph = document.querySelector('.profile__paragraph');
 const editForm = popup.querySelector('.popup__form');
 const addPhotoForm = document.querySelector('.popup__form_type_add-photo');
@@ -44,8 +44,8 @@ const titleField = popup.querySelector('.popup__input_type_title');
 const addButton = document.querySelector('.profile__add-button');
 const place = document.querySelector('.popup__input_type_place');
 const photoLink = document.querySelector('.popup__input_type_photo');
-const popupPhoto = document.querySelector('.popup__photo');
-const caption = document.querySelector('.popup__caption ');
+export const popupPhoto = document.querySelector('.popup__photo');
+export const caption = document.querySelector('.popup__caption ');
 const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 const escape = 27;
 
@@ -204,7 +204,7 @@ function profileValue() {
 };
 
 //открыть попап
-function showPopup(showPopup) {
+export function showPopup(showPopup) {
     showPopup.classList.add('popup_opened');
     document.addEventListener('keyup', closePopupByESC);
     const activePopup = document.querySelector('.popup_opened');
@@ -259,7 +259,7 @@ editButton.addEventListener('click', function() {
 
 //открыть попап создания карточки при клике на кнопку add-button и сделать кнопку неактивной
 addButton.addEventListener('click', function() {
-    // validateAddForm.disableButton(buttonSaveTypePhoto);
+    validateAddForm.disableButton(buttonSaveTypePhoto);
     showPopup(popupAddPhoto);
 });
 

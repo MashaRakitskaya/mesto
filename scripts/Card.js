@@ -1,3 +1,5 @@
+import { popupPhoto, caption, showPopup, popupBigPhoto } from './index.js';
+
 class Card {
 
     constructor(data, cardSelector) {
@@ -64,9 +66,15 @@ class Card {
         this._element.querySelector('.element__basket').closest('.element').remove();
     };
 
+    // _handleOpenPopupBigPhoto() {
+    //     popupPhoto.src = this._element.querySelector('.element__image').src;
+    //     caption.textContent = this._element.querySelector('.element__image').textContent;
+    //     showPopup(popupBigPhoto);
+    // };
+
     _handleOpenPopupBigPhoto() {
-        popupPhoto.src = this._element.querySelector('.element__image').src;
-        caption.textContent = this._element.querySelector('.element__image').alt;
+        popupPhoto.src = this._photo;
+        caption.textContent = this._title;
         showPopup(popupBigPhoto);
     };
 

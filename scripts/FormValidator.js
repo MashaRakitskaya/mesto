@@ -180,7 +180,7 @@
 
 
 
-export class FormValidator {
+class FormValidator {
   constructor(config, formSelector) {
       this._config = config;
       this._formSelector = formSelector;
@@ -222,7 +222,7 @@ export class FormValidator {
   _toggleButtonState(inputList, buttonElement) {
     // console.log(hasInvalidInput(inputList));
     if (this._hasInvalidInput(inputList)) {
-      this._disableButton(buttonElement);
+      this.disableButton(buttonElement);
     } else {
       this.removeDisableButton(buttonElement);
     }
@@ -245,7 +245,7 @@ export class FormValidator {
   };
 
   //кнопка в состоянии disabled
-  _disableButton(buttonElement) {
+  disableButton(buttonElement) {
     buttonElement.classList.add(this._config.buttonInvalidClass);
     buttonElement.disabled = true;
   };
@@ -268,8 +268,8 @@ export class FormValidator {
       
     formElement.addEventListener('submit', (event) => {
       event.preventDefault();
-      // this._disableButton(buttonSaveTypePhoto);
-      this._disableButton(buttonElement);
+      // this.disableButton(buttonSaveTypePhoto);
+      // this.disableButton(buttonElement);
     });
   
           
@@ -287,7 +287,7 @@ export class FormValidator {
 
 
 
-// export { FormValidator };
+export { FormValidator };
 
 
 
