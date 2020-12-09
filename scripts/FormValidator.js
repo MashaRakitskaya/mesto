@@ -78,15 +78,12 @@ class FormValidator {
   //включить проверку
   enableValidation() {
     const formElement = document.querySelector(this._formSelector);
-    // const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
     const buttonElement = formElement.querySelector(this._config.submitButtonSelector);
   
     
       
     formElement.addEventListener('submit', (event) => {
       event.preventDefault();
-      // this.disableButton(buttonSaveTypePhoto);
-      // this.disableButton(buttonElement);
     });
   
           
