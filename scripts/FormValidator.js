@@ -49,7 +49,6 @@ class FormValidator {
   //установить слушателей событий
   _setEventListeners(formElement, buttonElement) {
     const inputList = Array.from(formElement.querySelectorAll(this._config.inputSelector));
-    // const buttonElement = formElement.querySelector(this._config.submitButtonSelector);
 
     this._toggleButtonState(inputList, buttonElement);
 
