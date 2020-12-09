@@ -65,7 +65,7 @@ const like = document.querySelector('.element__like');
 const basket = document.querySelector('.element__basket');
 
 
-
+//переберем массив
 initialCards.forEach((item) => {
     const card = new Card(item, '#card-template');
 	const cardElement = card.generateCard();
@@ -73,80 +73,6 @@ initialCards.forEach((item) => {
 	elements.append(cardElement);
 });
 
-
-
-
-
-
-// const elements = document.querySelector('.elements');
-// const cardTemplate = document.querySelector('#card-template').content.querySelector('.element');
-
-
-// //создать карту
-// function createCard(item) {
-//     const card = cardTemplate.cloneNode(true);
-//     const photo = card.querySelector('.element__image');
-//     const title = card.querySelector('.element__title');
-//     const like = card.querySelector('.element__like');
-//     const basket = card.querySelector('.element__basket');
-
-
-//     photo.src = item.link;
-//     title.textContent = item.name;
-//     photo.alt = item.name;
-
-//     //при клике на лайк делать его черным и прозрачным при повторном клике
-//     like.addEventListener('click', event => {
-//         event.target.classList.toggle('element__like_pressed');
-//     });
-
-//     //удалять картоку при клике на карзину
-//     basket.addEventListener('click', event => {
-//         event.target.closest('.element').remove();
-//     });
-
-//     //открыть фото на весь экран при клике на фото
-//     photo.addEventListener('click', event => {
-//         popupPhoto.src = event.target.src;
-//         caption.textContent = event.target.alt;
-//         showPopup(popupBigPhoto);
-//     });
-
-//     return card;
-
-// };
-
-
-// //добавить карту
-// function addCard(item, elements, isPrepend) {
-//     if (isPrepend) {
-//         elements.prepend(createCard(item));  
-//     } else {
-//         elements.append(createCard(item));
-//     }
-// };
-
-// //создать и добавить данные из массива в карты
-// initialCards.forEach(item => addCard(item, elements, false));
-
-
-// //по сабмиту создать новую каточку
-// addPhotoForm.addEventListener('submit', event => {
-//     event.preventDefault();
-
-//     //добавить карточку в elements
-//     addCard({
-//         name: place.value,
-//         link: photoLink.value
-//     }, elements, true);
-        
-//     place.value = '';
-//     photoLink.value = '';
-
-//     //закрыть попап
-//     closePopup(popupAddPhoto);
-        
-// });
 
 
 
@@ -162,8 +88,6 @@ function addCard(item, elements, isPrepend) {
     }
 };
 
-//создать и добавить данные из массива в карты
-// initialCards.forEach(item => addCard(item,  elements, false));
 
 
 //по сабмиту создать новую каточку
