@@ -48,34 +48,12 @@ export const popupPhoto = document.querySelector('.popup__photo');
 export const caption = document.querySelector('.popup__caption ');
 const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 const escape = 27;
-
-const formPropile = document.querySelector('.popup__form');
-const formPhoto = document.querySelector('.popup__form_type_add-photo');
-
 const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
-// const buttonSave = document.querySelector('.popup__save');
 const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
-
-
 const elements = document.querySelector('.elements');
 
-const photo = document.querySelector('.element__image');
-const title = document.querySelector('.element__title');
-const like = document.querySelector('.element__like');
-const basket = document.querySelector('.element__basket');
-
-
 //переберем массив
-initialCards.forEach((item) => {
-    const card = new Card(item, '#card-template');
-	const cardElement = card.generateCard();
-
-	elements.append(cardElement);
-});
-
-
-
-
+initialCards.forEach(item => addCard(item, elements, false));
 
 //добавить карту
 function addCard(item, elements, isPrepend) {
@@ -87,8 +65,6 @@ function addCard(item, elements, isPrepend) {
         elements.append(cardElement);
     }
 };
-
-
 
 //по сабмиту создать новую каточку
 addPhotoForm.addEventListener('submit', event => {
@@ -104,22 +80,12 @@ addPhotoForm.addEventListener('submit', event => {
 
     //закрыть попап
     closePopup(popupAddPhoto);
-        
 });
-
-
-
-
 
 //закрыть попап большой фотографии кликом на крестик
 closeBigFoto.addEventListener('click', function() {
     closePopup(popupBigPhoto);
 });
-
-
-
-
-
 
 //значение из инпутов попапа разно значениям на странице
 function profileValue() {
@@ -141,8 +107,10 @@ function closePopup(closePopup) {
     document.removeEventListener('keyup', closePopupByESC);
     activePopup.removeEventListener('click', closePopupByOverlay);
     closePopup.classList.remove('popup_opened');
-    resetForm(formPropile);
-    resetForm(formPhoto);
+    // resetForm(formProfile);
+    // resetForm(formPhoto);
+    const form = activePopup.querySelector('.popup__form');
+    resetForm(form);
 };
 
 //закрытие попапов при нажатии ESC
@@ -153,7 +121,6 @@ const closePopupByESC = (event) => {
     }
 };
 
-
 //закрытие попапов кликом на overlay
 const closePopupByOverlay = function (event) {
     if (event.target.classList.contains('popup')) {
@@ -163,7 +130,7 @@ const closePopupByOverlay = function (event) {
 };
 
 //ресэт формы
-const resetForm = (form) => {
+function resetForm(form) {
     form.reset();
     form.querySelectorAll('.popup__input-error').forEach((span) => {
         span.textContent = '';
@@ -180,26 +147,21 @@ editButton.addEventListener('click', function() {
     profileValue();
 });
 
-
 //открыть попап создания карточки при клике на кнопку add-button и сделать кнопку неактивной
 addButton.addEventListener('click', function() {
     validateAddForm.disableButton(buttonSaveTypePhoto);
     showPopup(popupAddPhoto);
 });
 
-
 //нажать на крестик и закрыть попап редактирования профиля
 popupCloseButton.addEventListener('click', function() {
     closePopup(popupEditProfile);
 }); 
 
-
 //нажать на крестик и закрыть попап создания карточки
 popupPhotoCloseButton.addEventListener('click', function() {
     closePopup(popupAddPhoto);
 });
-
-
 
 //при сабмите формы редактирования профиля переносить данные из инпутов на страницу
 editForm.addEventListener('submit', event => {
@@ -208,8 +170,6 @@ editForm.addEventListener('submit', event => {
     profileParagraph.textContent = titleField.value;
     closePopup(popupEditProfile);
 });
-
-
 
 const validationConfig = {
     // formSelector: '.popup__form',
@@ -220,11 +180,8 @@ const validationConfig = {
     buttonInvalidClass: 'popup__save_disabled'
 };
 
-
-
 const validateEditForm = new FormValidator(validationConfig, '.popup__form_type_edit-profile');
 const validateAddForm = new FormValidator(validationConfig, '.popup__form_type_add-photo');
   
 validateEditForm.enableValidation();
- 
 validateAddForm.enableValidation();

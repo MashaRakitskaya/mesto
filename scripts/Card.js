@@ -25,11 +25,11 @@ class Card {
 
         this._setEventListeners();
 
+        const image = this._element.querySelector('.element__image');
+
         this._element.querySelector('.element__title').textContent = this._title;
-        this._element.querySelector('.element__image').src = this._photo;
-        this._element.querySelector('.element__image').alt = this._title;
-
-
+        image.src = this._photo;
+        image.alt = this._title;
 
         return this._element;
     };
@@ -43,8 +43,8 @@ class Card {
         this._element.querySelector('.element__basket').addEventListener('click', () => {
             this._handleBasketClick();
         });
-
-       this._element.querySelector('.element__image').addEventListener('click', () => {
+        
+        this._element.querySelector('.element__image').addEventListener('click', () => {
             this._handleOpenPopupBigPhoto();
         });
 

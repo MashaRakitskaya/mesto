@@ -73,26 +73,18 @@ class FormValidator {
     buttonElement.disabled = false;
   };
 
-
-
   //включить проверку
   enableValidation() {
     const formElement = document.querySelector(this._formSelector);
     const buttonElement = formElement.querySelector(this._config.submitButtonSelector);
-  
-    
-      
+   
     formElement.addEventListener('submit', (event) => {
       event.preventDefault();
     });
   
           
     this._setEventListeners(formElement, buttonElement);
-    
   };
-
 };
-
-
 
 export { FormValidator };
