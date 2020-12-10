@@ -108,7 +108,9 @@ function closePopup(closePopup) {
     activePopup.removeEventListener('click', closePopupByOverlay);
     closePopup.classList.remove('popup_opened');
     const form = activePopup.querySelector('.popup__form');
-    resetForm(form);
+    if (form) {
+        resetForm(form);
+    };
 };
 
 //закрытие попапов при нажатии ESC
