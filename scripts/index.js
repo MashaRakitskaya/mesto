@@ -107,8 +107,6 @@ function closePopup(closePopup) {
     document.removeEventListener('keyup', closePopupByESC);
     activePopup.removeEventListener('click', closePopupByOverlay);
     closePopup.classList.remove('popup_opened');
-    // resetForm(formProfile);
-    // resetForm(formPhoto);
     const form = activePopup.querySelector('.popup__form');
     resetForm(form);
 };
