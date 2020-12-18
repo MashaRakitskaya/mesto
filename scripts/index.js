@@ -1,32 +1,10 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+import { 
+    initialCards,
+    elements 
+} from './constants.js';
+import { Section } from './Section.js';
 
 const popup = document.querySelector('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
@@ -50,21 +28,36 @@ const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto')
 const escape = 27;
 const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
-const elements = document.querySelector('.elements');
+// const elements = document.querySelector('.elements');
 
-//переберем массив
-initialCards.forEach(item => addCard(item, elements, false));
+const cardsList = new Section({
+    items: initialCards,
+    renderer: (item) => {
+        const card = new Card(item, '#card-template');
+        const cardElement = card.generateCard();
+        
+        cardsList.setItem(cardElement);
+    },
+},
+elements
+);
 
-//добавить карту
-function addCard(item, elements, isPrepend) {
-    const card = new Card(item, '#card-template');
-	const cardElement = card.generateCard();
-    if (isPrepend) {
-        elements.prepend(cardElement);
-    } else {
-        elements.append(cardElement);
-    }
-};
+cardsList.renderItems();
+
+
+// //переберем массив
+// initialCards.forEach(item => addCard(item, elements, false));
+
+// //добавить карту
+// function addCard(item, elements, isPrepend) {
+//     const card = new Card(item, '#card-template');
+// 	const cardElement = card.generateCard();
+//     if (isPrepend) {
+//         elements.prepend(cardElement);
+//     } else {
+//         elements.append(cardElement);
+//     }
+// };
 
 //по сабмиту создать новую каточку
 addPhotoForm.addEventListener('submit', event => {

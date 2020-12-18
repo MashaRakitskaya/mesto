@@ -1,0 +1,19 @@
+{
+  "name": "yandex_praktikum",
+  "version": "0.0.1",
+  "description": "Интерактивной страницей, куда можно добавлять фотографии, удалять их и ставить лайки.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MashaRakitskaya/mesto.git"
+  },
+  "author": "Maryia Rakitskaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MashaRakitskaya/mesto/issues"
+  },
+  "homepage": "https://github.com/MashaRakitskaya/mesto#readme"
+}
