@@ -35,8 +35,6 @@ const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
 
 
-// const elements = document.querySelector('.elements'); //разобраться
-
 const cardsList = new Section({
     items: initialCards,
     renderer: (item) => {
