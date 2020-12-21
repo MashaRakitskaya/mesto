@@ -7,34 +7,50 @@ export class Popup {
 
     open() {
         this._popupSelector.classList.add('popup_opened');
+        document.addEventListener('keyup', this._handleEscClose);
+        this._popupSelector.addEventListener('click', this._handleByOverlayClose);
     }
 
     close() {
         this._popupSelector.classList.remove('popup_opened');
-
+        document.removeEventListener('keyup', this._handleEscClose);
+        this._popupSelector.removeEventListener('click', this._handleByOverlayClose);
     }
 
-    _handleEscClose(event) {
+    // _handleEscClose() {
+    //     (event) => {
+    //         if (event.keyCode == escape) {
+    //             // const activePopup = document.querySelector('.popup_opened');
+    //             console.log('cc');
+    //             this.close();
+    //         }
+    //     }
+    // }
+
+    // _handleByOverlayClose() {
+    //     (event) => {
+    //         if (event.target.classList.contains('popup')) {
+    //             // const activePopup = document.querySelector('.popup_opened');
+    //             this.close();
+    //         }
+    //     }
+    // }
+    _handleEscClose = (event) => {
         if (event.keyCode == escape) {
-            // const activePopup = document.querySelector('.popup_opened'); 
             this.close();
-        }
+        }  
     }
 
-    _handleByOverlayClose(event) {
+    _handleByOverlayClose = (event) => {
         if (event.target.classList.contains('popup')) {
-            // const activePopup = document.querySelector('.popup_opened');
             this.close();
         }
     }
-
 
     setEventListeners(popupCloseButton) {
-        // const  popupCloseButton = document.querySelectorAll('.popup__close');
-
         popupCloseButton.addEventListener('click', () => {
             this.close();
-        }); 
+        });
     }
 }
 
