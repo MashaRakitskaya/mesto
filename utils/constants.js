@@ -25,5 +25,12 @@ export const initialCards = [
     }
 ];
 
-// export const elements = document.querySelector('.elements');
-export const elements = '.elements';
+export const elements = document.querySelector('.elements');
+// export const elements = '.elements';
+export const escape = 27;
+export const popupCloseButton = document.querySelector('.popup__close');
+export const editButton = document.querySelector('.profile__edit-button');
+export const addButton = document.querySelector('.profile__add-button');
+export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+export const popupAddPhoto = document.querySelector('.popup_type_add-photo');
+export const popupBigPhoto = document.querySelector('.popup_type_big-photo');

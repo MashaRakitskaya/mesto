@@ -1,4 +1,7 @@
-import { popupPhoto, caption, showPopup, popupBigPhoto } from './index.js';
+// import { popupPhoto, caption, showPopup, popupBigPhoto } from './index.js';
+import { popupPhoto, caption } from './index.js';
+import { Popup } from './Popup.js';
+import { popupBigPhoto } from '../utils/constants.js';
 
 class Card {
 
@@ -64,7 +67,9 @@ class Card {
     _handleOpenPopupBigPhoto() {
         popupPhoto.src = this._photo;
         caption.textContent = this._title;
-        showPopup(popupBigPhoto);
+        // showPopup(popupBigPhoto);
+        const BigPhoto = new Popup(popupBigPhoto);
+        BigPhoto.open();
     };
 
 };
