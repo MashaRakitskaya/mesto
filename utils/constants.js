@@ -34,3 +34,5 @@ export const addButton = document.querySelector('.profile__add-button');
 export const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 export const popupAddPhoto = document.querySelector('.popup_type_add-photo');
 export const popupBigPhoto = document.querySelector('.popup_type_big-photo');
+export const popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
+export const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');

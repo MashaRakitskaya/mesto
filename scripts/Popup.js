@@ -10,7 +10,8 @@ export class Popup {
     }
 
     close() {
-        this._popupSelector.classList.classList.remove('popup_opened');
+        this._popupSelector.classList.remove('popup_opened');
+
     }
 
     _handleEscClose(event) {
@@ -28,9 +29,10 @@ export class Popup {
     }
 
 
-    setEventListeners() {
-        const  popupCloseButton = document.querySelectorAll('.popup__close');
-        popupCloseButton.addEventListener('click', function() {
+    setEventListeners(popupCloseButton) {
+        // const  popupCloseButton = document.querySelectorAll('.popup__close');
+
+        popupCloseButton.addEventListener('click', () => {
             this.close();
         }); 
     }

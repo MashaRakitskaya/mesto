@@ -6,7 +6,9 @@ import {
     editButton,
     addButton,
     popupEditProfile,
-    popupAddPhoto
+    popupAddPhoto,
+    popupCloseButton,
+    popupPhotoCloseButton,
 } from '../utils/constants.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
@@ -15,7 +17,7 @@ const popup = document.querySelector('.popup');
 // const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 // const popupAddPhoto = document.querySelector('.popup_type_add-photo');
 // const popupCloseButton = popup.querySelector('.popup__close');
-const popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
+// const popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
 // const editButton = document.querySelector('.profile__edit-button');
 const profileTitle = document.querySelector('.profile__title');
 // const popupBigPhoto = document.querySelector('.popup_type_big-photo');
@@ -29,7 +31,7 @@ const place = document.querySelector('.popup__input_type_place');
 const photoLink = document.querySelector('.popup__input_type_photo');
 export const popupPhoto = document.querySelector('.popup__photo');
 export const caption = document.querySelector('.popup__caption ');
-const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
+// const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 // const escape = 27;
 const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
@@ -140,18 +142,18 @@ function resetForm(form) {
 //     showPopup(popupAddPhoto);
 // });
 
-
+const EditProfile = new Popup(popupEditProfile);
 editButton.addEventListener('click', () => {
-    const EditProfile = new Popup(popupEditProfile);
     EditProfile.open();
 });
+EditProfile.setEventListeners(popupCloseButton);
 
+
+const AddPhoto = new Popup(popupAddPhoto);
 addButton.addEventListener ('click', () => {
-    const AddPhoto = new Popup(popupAddPhoto);
     AddPhoto.open();
 });
-
-
+AddPhoto.setEventListeners(popupPhotoCloseButton);
 
 
 
