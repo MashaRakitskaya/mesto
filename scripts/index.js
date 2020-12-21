@@ -9,9 +9,13 @@ import {
     popupAddPhoto,
     popupCloseButton,
     popupPhotoCloseButton,
+    // cardImage,
+    // popupBigPhoto,
+    // closeBigFoto
 } from '../utils/constants.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
+// import { PopupWithImage } from './PopupWithImage.js';
 
 const popup = document.querySelector('.popup');
 // const popupEditProfile = document.querySelector('.popup_type_edit-profile');
@@ -29,8 +33,8 @@ const titleField = popup.querySelector('.popup__input_type_title');
 // const addButton = document.querySelector('.profile__add-button');
 const place = document.querySelector('.popup__input_type_place');
 const photoLink = document.querySelector('.popup__input_type_photo');
-export const popupPhoto = document.querySelector('.popup__photo');
-export const caption = document.querySelector('.popup__caption ');
+// export const popupPhoto = document.querySelector('.popup__photo');
+// export const caption = document.querySelector('.popup__caption ');
 // const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 // const escape = 27;
 const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
@@ -156,6 +160,11 @@ addButton.addEventListener ('click', () => {
 AddPhoto.setEventListeners(popupPhotoCloseButton);
 
 
+// const BigPhoto = new PopupWithImage(initialCards, popupBigPhoto);
+// cardImage.addEventListener ('click', () => {
+//     BigPhoto.open();
+// });
+// BigPhoto.setEventListeners(closeBigFoto);
 
 
 

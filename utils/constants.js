@@ -36,3 +36,6 @@ export const popupAddPhoto = document.querySelector('.popup_type_add-photo');
 export const popupBigPhoto = document.querySelector('.popup_type_big-photo');
 export const popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
 export const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
+export const popupPhoto = document.querySelector('.popup__photo');
+export const caption = document.querySelector('.popup__caption ');
+// export const cardImage = document.querySelector('.element__image');
