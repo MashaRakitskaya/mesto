@@ -1,18 +1,3 @@
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { 
-    initialCards,
-    elements,
-    editButton,
-    addButton,
-    popupEditProfile,
-    popupAddPhoto,
-    popupCloseButton,
-    popupPhotoCloseButton,
-} from '../utils/constants.js';
-import { Section } from './Section.js';
-import { Popup } from './Popup.js';
-
 const popup = document.querySelector('.popup');
 // const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 // const popupAddPhoto = document.querySelector('.popup_type_add-photo');
@@ -36,11 +21,38 @@ const photoLink = document.querySelector('.popup__input_type_photo');
 const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
 
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { 
+    initialCards,
+    elements,
+    editButton,
+    addButton,
+    popupEditProfile,
+    popupAddPhoto,
+    popupCloseButton,
+    popupPhotoCloseButton,
+    popupBigPhoto,
+    // elementImage
+} from '../utils/constants.js';
+import { Section } from './Section.js';
+import { Popup } from './Popup.js';
+import { PopupWithImage } from './PopupWithImage.js';
+
 
 const cardsList = new Section({
     items: initialCards,
     renderer: (item) => {
-        const card = new Card(item, '#card-template');
+        const card = new Card({
+            data: item,
+            handleCardClick: () => {
+                const BigPhoto = new PopupWithImage(item, popupBigPhoto);
+                BigPhoto.open();
+                
+            }
+            },
+            '#card-template');
+
         const cardElement = card.generateCard();
         
         cardsList.setItem(cardElement);

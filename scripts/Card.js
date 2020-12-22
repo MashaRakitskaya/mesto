@@ -1,14 +1,17 @@
 // import { popupPhoto, caption, showPopup, popupBigPhoto } from './index.js';
 // import { popupPhoto, caption } from './index.js';
 // import { Popup } from './Popup.js';
-import { initialCards,popupBigPhoto,closeBigFoto } from '../utils/constants.js';
-import { PopupWithImage } from './PopupWithImage.js';
+// import { initialCards,popupBigPhoto,closeBigFoto } from '../utils/constants.js';
+// import { PopupWithImage } from './PopupWithImage.js';
 class Card {
 
-    constructor(data, cardSelector) {
+    constructor( { data, handleCardClick }, cardSelector) {
         this._photo = data.link;
         this._title = data.name;
+        this._handleCardClick = handleCardClick;
+
         this._cardSelector = cardSelector;
+        
     }
 
     //получить шаблон
@@ -48,7 +51,7 @@ class Card {
         });
         
         this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._handleOpenPopupBigPhoto();
+            this._handleCardClick();
         });
 
     };
@@ -63,7 +66,16 @@ class Card {
         this._element.querySelector('.element__basket').closest('.element').remove();
     };
 
-    // //обработчик клика по фото
+    
+
+};
+
+
+export {Card};
+
+
+
+// //обработчик клика по фото
     // _handleOpenPopupBigPhoto() {
     //     // popupPhoto.src = this._photo;
     //     // caption.textContent = this._title;
@@ -77,8 +89,17 @@ class Card {
     //     // BigPhoto.setEventListeners(closeBigFoto);
         
     // };
+    //обработчик клика по фото
+    // _handleOpenPopupBigPhoto() {
+    //     // popupPhoto.src = this._photo;
+    //     // caption.textContent = this._title;
+    //     // const BigPhoto = new Popup(popupBigPhoto);
+    //     // BigPhoto.open();
+    //     // BigPhoto.setEventListeners(closeBigFoto);
 
-};
 
-
-export {Card};
+    //     // const BigPhoto = new PopupWithImage(initialCards, popupBigPhoto);
+    //     // BigPhoto.open();
+    //     // BigPhoto.setEventListeners(closeBigFoto);
+        
+    // };
