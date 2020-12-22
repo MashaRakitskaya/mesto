@@ -9,13 +9,13 @@ import {
     popupAddPhoto,
     popupCloseButton,
     popupPhotoCloseButton,
-    // cardImage,
-    // popupBigPhoto,
-    // closeBigFoto
+    cardImage,
+    popupBigPhoto,
+    closeBigFoto
 } from '../utils/constants.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
-// import { PopupWithImage } from './PopupWithImage.js';
+import { PopupWithImage } from './PopupWithImage.js';
 
 const popup = document.querySelector('.popup');
 // const popupEditProfile = document.querySelector('.popup_type_edit-profile');

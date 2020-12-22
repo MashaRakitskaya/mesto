@@ -38,4 +38,4 @@ export const popupPhotoCloseButton = document.querySelector('.popup__close_type_
 export const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 export const popupPhoto = document.querySelector('.popup__photo');
 export const caption = document.querySelector('.popup__caption ');
-// export const cardImage = document.querySelector('.element__image');
+export const cardImage = document.querySelector('.element__image');

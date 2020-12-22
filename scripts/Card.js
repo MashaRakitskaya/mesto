@@ -47,9 +47,9 @@ class Card {
             this._handleBasketClick();
         });
         
-        this._element.querySelector('.element__image').addEventListener('click', () => {
-            this._handleOpenPopupBigPhoto();
-        });
+        // this._element.querySelector('.element__image').addEventListener('click', () => {
+        //     this._handleOpenPopupBigPhoto();
+        // });
 
     };
 
@@ -63,18 +63,20 @@ class Card {
         this._element.querySelector('.element__basket').closest('.element').remove();
     };
 
-    //обработчик клика по фото
-    _handleOpenPopupBigPhoto() {
-        // popupPhoto.src = this._photo;
-        // caption.textContent = this._title;
-        // const BigPhoto = new Popup(popupBigPhoto);
-        // BigPhoto.open();
-        // BigPhoto.setEventListeners(closeBigFoto);
-        const BigPhoto = new PopupWithImage(initialCards, popupBigPhoto);
-        BigPhoto.open();
-        BigPhoto.setEventListeners(closeBigFoto);
+    // //обработчик клика по фото
+    // _handleOpenPopupBigPhoto() {
+    //     // popupPhoto.src = this._photo;
+    //     // caption.textContent = this._title;
+    //     // const BigPhoto = new Popup(popupBigPhoto);
+    //     // BigPhoto.open();
+    //     // BigPhoto.setEventListeners(closeBigFoto);
+
+
+    //     // const BigPhoto = new PopupWithImage(initialCards, popupBigPhoto);
+    //     // BigPhoto.open();
+    //     // BigPhoto.setEventListeners(closeBigFoto);
         
-    };
+    // };
 
 };
 
