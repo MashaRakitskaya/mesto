@@ -33,7 +33,7 @@ import {
     popupCloseButton,
     popupPhotoCloseButton,
     popupBigPhoto,
-    // elementImage
+    closeBigFoto
 } from '../utils/constants.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
@@ -48,7 +48,7 @@ const cardsList = new Section({
             handleCardClick: () => {
                 const BigPhoto = new PopupWithImage(item, popupBigPhoto);
                 BigPhoto.open();
-                
+                BigPhoto.setEventListeners(closeBigFoto);
             }
             },
             '#card-template');
