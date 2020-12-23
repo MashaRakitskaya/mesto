@@ -44,6 +44,7 @@ import { Section } from './Section.js';
 import { Popup } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { UserInfo } from './UserInfo.js';
+import { PopupWithForm } from './PopupWithForm.js';
 
 
 const cardsList = new Section({
@@ -92,41 +93,58 @@ addPhotoForm.addEventListener('submit', event => {
 //     titleField.value = profileParagraph.textContent; 
 // };
 
+
+//перенос данных со станицы в инпуты попапа
 const userInfo = new UserInfo({
     nameSelector: profileTitle,
     occupationSelector: profileParagraph
 });
-
 const currentUserInfo = userInfo.getUserInfo();
 nameField.value = currentUserInfo.name;
 occupationField.value = currentUserInfo.occupation;
 
 
 
-//ресэт формы
-function resetForm(form) {
-    form.reset();
-    form.querySelectorAll('.popup__input-error').forEach((span) => {
-        span.textContent = '';
-    });
-    form.querySelectorAll('.popup__input').forEach((input) => {
-        input.classList.remove('popup__input_type_error');
-    });
-};
+const popupEditForm = new PopupWithForm ({
+    popupSelector: popupEditProfile,
+    handleSubmitform: (item) => {
+        // userInfo.getUserInfo();
+        userInfo.setUserInfo({ 
+            name: item,
+            occupation: item
+        });
+        popupEditForm.setEventListeners();
+    }
+});
 
 
+// //ресэт формы
+// function resetForm(form) {
+//     form.reset();
+//     form.querySelectorAll('.popup__input-error').forEach((span) => {
+//         span.textContent = '';
+//     });
+//     form.querySelectorAll('.popup__input').forEach((input) => {
+//         input.classList.remove('popup__input_type_error');
+//     });
+// };
 
+
+//открытие попапа редактирования профиля
 const EditProfile = new Popup(popupEditProfile);
 editButton.addEventListener('click', () => {
     EditProfile.open();
 });
+//закрытие попапа редактиования профиля
 EditProfile.setEventListeners(popupCloseButton);
 
 
+//откртие попапа добавления карточки
 const AddPhoto = new Popup(popupAddPhoto);
 addButton.addEventListener ('click', () => {
     AddPhoto.open();
 });
+//закрытие попапа добавления карточки
 AddPhoto.setEventListeners(popupPhotoCloseButton);
 
 
@@ -134,13 +152,14 @@ AddPhoto.setEventListeners(popupPhotoCloseButton);
 
 
 
-//при сабмите формы редактирования профиля переносить данные из инпутов на страницу
-editForm.addEventListener('submit', event => {
-    event.preventDefault();
-    profileTitle.textContent = nameField.value;
-    profileParagraph.textContent = occupationField.value;
-    // closePopup(popupEditProfile);
-});
+
+// //при сабмите формы редактирования профиля переносить данные из инпутов на страницу
+// editForm.addEventListener('submit', event => {
+//     event.preventDefault();
+//     profileTitle.textContent = nameField.value;
+//     profileParagraph.textContent = occupationField.value;
+//     // closePopup(popupEditProfile);
+// });
 
 const validationConfig = {
     // formSelector: '.popup__form',
