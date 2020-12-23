@@ -39,3 +39,7 @@ export const closeBigFoto = document.querySelector('.popup__close_type_close-big
 export const popupPhoto = document.querySelector('.popup__photo');
 export const caption = document.querySelector('.popup__caption');
 // export const elementImage = document.querySelector('.element__image');
+export const profileTitle = document.querySelector('.profile__title');
+export const profileParagraph = document.querySelector('.profile__paragraph');
+export const nameField = document.querySelector('.popup__input_type_name');
+export const occupationField = document.querySelector('.popup__input_type_title');

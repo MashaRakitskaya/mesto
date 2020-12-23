@@ -5,11 +5,15 @@ export class UserInfo {
     }
 
     getUserInfo() {
-
+        return {
+            name: this._nameSelector.textContent,
+            occupation: this._occupationSelector.textContent
+        }
     }
 
-    setUserInfo() {
-
+    setUserInfo({ name, occupation }) {
+        this._nameSelector.textContent = name;
+        this._occupationSelector.textContent = occupation;
     }
 
 }

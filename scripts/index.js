@@ -4,13 +4,14 @@ const popup = document.querySelector('.popup');
 // const popupCloseButton = popup.querySelector('.popup__close');
 // const popupPhotoCloseButton = document.querySelector('.popup__close_type_close-photo');
 // const editButton = document.querySelector('.profile__edit-button');
-const profileTitle = document.querySelector('.profile__title');
+// export const profileTitle = document.querySelector('.profile__title');
 // const popupBigPhoto = document.querySelector('.popup_type_big-photo');
-const profileParagraph = document.querySelector('.profile__paragraph');
-const editForm = popup.querySelector('.popup__form');
+// export const profileParagraph = document.querySelector('.profile__paragraph');
+const editForm = document.querySelector('.popup__form');
 const addPhotoForm = document.querySelector('.popup__form_type_add-photo');
-const nameField = popup.querySelector('.popup__input_type_name');
-const titleField = popup.querySelector('.popup__input_type_title');
+// export const nameField = document.querySelector('.popup__input_type_name');
+// const titleField = popup.querySelector('.popup__input_type_title');
+// export const occupationField = document.querySelector('.popup__input_type_title');
 // const addButton = document.querySelector('.profile__add-button');
 const place = document.querySelector('.popup__input_type_place');
 const photoLink = document.querySelector('.popup__input_type_photo');
@@ -33,11 +34,16 @@ import {
     popupCloseButton,
     popupPhotoCloseButton,
     popupBigPhoto,
-    closeBigFoto
+    closeBigFoto,
+    profileTitle,
+    profileParagraph,
+    nameField,
+    occupationField
 } from '../utils/constants.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage.js';
+import { UserInfo } from './UserInfo.js';
 
 
 const cardsList = new Section({
@@ -80,16 +86,83 @@ addPhotoForm.addEventListener('submit', event => {
     close();
 });
 
+// //значение из инпутов попапа разно значениям на странице
+// function profileValue() {
+//     nameField.value = profileTitle.textContent;
+//     titleField.value = profileParagraph.textContent; 
+// };
+
+const userInfo = new UserInfo({
+    nameSelector: profileTitle,
+    occupationSelector: profileParagraph
+});
+
+const currentUserInfo = userInfo.getUserInfo();
+nameField.value = currentUserInfo.name;
+occupationField.value = currentUserInfo.occupation;
+
+
+
+//ресэт формы
+function resetForm(form) {
+    form.reset();
+    form.querySelectorAll('.popup__input-error').forEach((span) => {
+        span.textContent = '';
+    });
+    form.querySelectorAll('.popup__input').forEach((input) => {
+        input.classList.remove('popup__input_type_error');
+    });
+};
+
+
+
+const EditProfile = new Popup(popupEditProfile);
+editButton.addEventListener('click', () => {
+    EditProfile.open();
+});
+EditProfile.setEventListeners(popupCloseButton);
+
+
+const AddPhoto = new Popup(popupAddPhoto);
+addButton.addEventListener ('click', () => {
+    AddPhoto.open();
+});
+AddPhoto.setEventListeners(popupPhotoCloseButton);
+
+
+
+
+
+
+//при сабмите формы редактирования профиля переносить данные из инпутов на страницу
+editForm.addEventListener('submit', event => {
+    event.preventDefault();
+    profileTitle.textContent = nameField.value;
+    profileParagraph.textContent = occupationField.value;
+    // closePopup(popupEditProfile);
+});
+
+const validationConfig = {
+    // formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error',
+    buttonInvalidClass: 'popup__save_disabled'
+};
+
+const validateEditForm = new FormValidator(validationConfig, '.popup__form_type_edit-profile');
+const validateAddForm = new FormValidator(validationConfig, '.popup__form_type_add-photo');
+  
+validateEditForm.enableValidation();
+validateAddForm.enableValidation();
+
 // //закрыть попап большой фотографии кликом на крестик
 // closeBigFoto.addEventListener('click', function() {
 //     closePopup(popupBigPhoto);
 // });
 
-//значение из инпутов попапа разно значениям на странице
-function profileValue() {
-    nameField.value = profileTitle.textContent;
-    titleField.value = profileParagraph.textContent; 
-};
+
 
 // //открыть попап
 // export function showPopup(showPopup) {
@@ -127,16 +200,7 @@ function profileValue() {
 //     }
 // };
 
-//ресэт формы
-function resetForm(form) {
-    form.reset();
-    form.querySelectorAll('.popup__input-error').forEach((span) => {
-        span.textContent = '';
-    });
-    form.querySelectorAll('.popup__input').forEach((input) => {
-        input.classList.remove('popup__input_type_error');
-    });
-};
+
 
 
 
@@ -154,18 +218,7 @@ function resetForm(form) {
 //     showPopup(popupAddPhoto);
 // });
 
-const EditProfile = new Popup(popupEditProfile);
-editButton.addEventListener('click', () => {
-    EditProfile.open();
-});
-EditProfile.setEventListeners(popupCloseButton);
 
-
-const AddPhoto = new Popup(popupAddPhoto);
-addButton.addEventListener ('click', () => {
-    AddPhoto.open();
-});
-AddPhoto.setEventListeners(popupPhotoCloseButton);
 
 
 
@@ -184,25 +237,3 @@ AddPhoto.setEventListeners(popupPhotoCloseButton);
 
 
 
-//при сабмите формы редактирования профиля переносить данные из инпутов на страницу
-editForm.addEventListener('submit', event => {
-    event.preventDefault();
-    profileTitle.textContent = nameField.value;
-    profileParagraph.textContent = titleField.value;
-    // closePopup(popupEditProfile);
-});
-
-const validationConfig = {
-    // formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error',
-    buttonInvalidClass: 'popup__save_disabled'
-};
-
-const validateEditForm = new FormValidator(validationConfig, '.popup__form_type_edit-profile');
-const validateAddForm = new FormValidator(validationConfig, '.popup__form_type_add-photo');
-  
-validateEditForm.enableValidation();
-validateAddForm.enableValidation();
