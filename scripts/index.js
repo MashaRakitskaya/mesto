@@ -7,7 +7,9 @@ const popup = document.querySelector('.popup');
 // export const profileTitle = document.querySelector('.profile__title');
 // const popupBigPhoto = document.querySelector('.popup_type_big-photo');
 // export const profileParagraph = document.querySelector('.profile__paragraph');
-const editForm = document.querySelector('.popup__form');
+
+// const editForm = document.querySelector('.popup__form');
+
 const addPhotoForm = document.querySelector('.popup__form_type_add-photo');
 // export const nameField = document.querySelector('.popup__input_type_name');
 // const titleField = popup.querySelector('.popup__input_type_title');
@@ -19,7 +21,7 @@ const photoLink = document.querySelector('.popup__input_type_photo');
 // export const caption = document.querySelector('.popup__caption ');
 // const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 // const escape = 27;
-const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
+// const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
 
 import { Card } from './Card.js';
@@ -38,13 +40,18 @@ import {
     profileTitle,
     profileParagraph,
     nameField,
-    occupationField
+    occupationField,
+    formTypeEdit,
+    formTypeAddPhoto,
+    buttonTypeEdit
 } from '../utils/constants.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { UserInfo } from './UserInfo.js';
 import { PopupWithForm } from './PopupWithForm.js';
+
+
 
 
 const cardsList = new Section({
@@ -55,14 +62,14 @@ const cardsList = new Section({
             handleCardClick: () => {
                 const BigPhoto = new PopupWithImage(item, popupBigPhoto);
                 BigPhoto.open();
-                BigPhoto.setEventListeners(closeBigFoto);
+                // BigPhoto.setEventListeners();
             }
             },
             '#card-template');
 
         const cardElement = card.generateCard();
         
-        cardsList.setItem(cardElement);
+        cardsList.addItem(cardElement);
     },
 },
 elements
@@ -71,21 +78,27 @@ elements
 cardsList.renderItems();
 
 
-//по сабмиту создать новую каточку
-addPhotoForm.addEventListener('submit', event => {
-    event.preventDefault();
-    
-    addCard({
-        name: place.value,
-        link: photoLink.value
-    }, elements, true);
-        
-    place.value = '';
-    photoLink.value = '';
 
-    //закрыть попап
-    close();
-});
+
+// //по сабмиту создать новую каточку
+// addPhotoForm.addEventListener('submit', event => {
+//     event.preventDefault();
+    
+//     addCard({
+//         name: place.value,
+//         link: photoLink.value
+//     }, elements, true);
+        
+//     place.value = '';
+//     photoLink.value = '';
+
+//     //закрыть попап
+//     close();
+// });
+
+
+
+
 
 // //значение из инпутов попапа разно значениям на странице
 // function profileValue() {
@@ -94,28 +107,31 @@ addPhotoForm.addEventListener('submit', event => {
 // };
 
 
-//перенос данных со станицы в инпуты попапа
-const userInfo = new UserInfo({
-    nameSelector: profileTitle,
-    occupationSelector: profileParagraph
-});
-const currentUserInfo = userInfo.getUserInfo();
-nameField.value = currentUserInfo.name;
-occupationField.value = currentUserInfo.occupation;
+
+// //перенос данных со станицы в инпуты попапа
+// const userInfo = new UserInfo({
+//     nameSelector: profileTitle,
+//     occupationSelector: profileParagraph
+// });
+// const currentUserInfo = userInfo.getUserInfo();
+// nameField.value = currentUserInfo.name;
+// occupationField.value = currentUserInfo.occupation;
 
 
 
-const popupEditForm = new PopupWithForm ({
-    popupSelector: popupEditProfile,
-    handleSubmitform: (item) => {
-        // userInfo.getUserInfo();
-        userInfo.setUserInfo({ 
-            name: item,
-            occupation: item
-        });
-        popupEditForm.setEventListeners();
-    }
-});
+// const popupEditForm = new PopupWithForm ({
+//     popupSelector: popupEditProfile,
+//     handleSubmitForm: (item) => {
+//         // userInfo.getUserInfo();
+//         userInfo.setUserInfo({ 
+//             name: item,
+//             occupation: item
+//         });
+//         popupEditForm.setEventListeners();
+       
+//     }
+// });
+// popupEditForm.setEventListeners();
 
 
 // //ресэт формы
@@ -134,18 +150,61 @@ const popupEditForm = new PopupWithForm ({
 const EditProfile = new Popup(popupEditProfile);
 editButton.addEventListener('click', () => {
     EditProfile.open();
+    validateEditForm.resetForm(formTypeEdit);
+    validateEditForm.removeDisableButton(buttonTypeEdit);
+    const currentUserInfo = userInfo.getUserInfo();
+    nameField.value = currentUserInfo.name;
+    occupationField.value = currentUserInfo.occupation;
+    
 });
 //закрытие попапа редактиования профиля
-EditProfile.setEventListeners(popupCloseButton);
+EditProfile.setEventListeners();
+
+
+
 
 
 //откртие попапа добавления карточки
 const AddPhoto = new Popup(popupAddPhoto);
 addButton.addEventListener ('click', () => {
+    //перенос данных со станицы в инпуты попапа
     AddPhoto.open();
 });
 //закрытие попапа добавления карточки
-AddPhoto.setEventListeners(popupPhotoCloseButton);
+AddPhoto.setEventListeners();
+
+//перенос данных со станицы в инпуты попапа
+const userInfo = new UserInfo({
+    nameSelector: profileTitle,
+    occupationSelector: profileParagraph
+});
+// const currentUserInfo = userInfo.getUserInfo();
+// nameField.value = currentUserInfo.name;
+// occupationField.value = currentUserInfo.occupation;
+
+
+
+
+const BigPhoto = new Popup(popupBigPhoto);
+//закрытие попапа большого фото
+BigPhoto.setEventListeners();
+
+
+
+
+
+const popupEditForm = new PopupWithForm ({
+    popupSelector: popupEditProfile,
+    handleSubmitForm: (data) => {
+        // console.log(data);
+        userInfo.setUserInfo({
+            name: data["profileName"],
+            occupation: data["occupation"]
+        });
+    }
+});
+popupEditForm.setEventListeners();
+
 
 
 

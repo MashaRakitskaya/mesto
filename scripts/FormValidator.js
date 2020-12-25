@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
   constructor(config, formSelector) {
       this._config = config;
       this._formSelector = formSelector;
@@ -85,6 +85,24 @@ class FormValidator {
           
     this._setEventListeners(formElement, buttonElement);
   };
-};
 
-export { FormValidator };
+
+  // reset(form) {
+  //   form.reset();
+  //   form.querySelectorAll('.popup__input-error').forEach((span) => {
+  //     span.textContent = '';
+  //   });
+  //   form.querySelectorAll('.popup__input').forEach((input) => {
+  //     input.classList.remove('popup__input_type_error');
+  //   });
+  // };
+
+  resetForm(formElement) {
+    formElement.reset();
+    const inputList = Array.from(formElement.querySelectorAll(this._config.inputSelector));
+    inputList.forEach((inputElement) => {
+      this._hideError(formElement, inputElement);
+    })
+  };
+
+};

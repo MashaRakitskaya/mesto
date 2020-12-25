@@ -1,5 +1,6 @@
 import { escape } from '../utils/constants.js';
 
+
 export class Popup {
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
@@ -9,49 +10,42 @@ export class Popup {
         this._popupSelector.classList.add('popup_opened');
         document.addEventListener('keyup', this._handleEscClose);
         this._popupSelector.addEventListener('click', this._handleByOverlayClose);
-    }
+        // console.log('hahah');
+    };
 
     close() {
         this._popupSelector.classList.remove('popup_opened');
-        document.removeEventListener('keyup', this._handleEscClose);
-        this._popupSelector.removeEventListener('click', this._handleByOverlayClose);
-    }
+        // document.removeEventListener('keyup', this._handleEscClose);
+        // this._popupSelector.removeEventListener('click', this._handleByOverlayClose);
+    };
 
-    // _handleEscClose() {
-    //     (event) => {
-    //         if (event.keyCode == escape) {
-    //             // const activePopup = document.querySelector('.popup_opened');
-    //             console.log('cc');
-    //             this.close();
-    //         }
-    //     }
-    // }
-
-    // _handleByOverlayClose() {
-    //     (event) => {
-    //         if (event.target.classList.contains('popup')) {
-    //             // const activePopup = document.querySelector('.popup_opened');
-    //             this.close();
-    //         }
-    //     }
-    // }
     _handleEscClose = (event) => {
         if (event.keyCode == escape) {
             this.close();
         }  
-    }
+    };
 
     _handleByOverlayClose = (event) => {
         if (event.target.classList.contains('popup')) {
             this.close();
         }
-    }
+    };
 
-    setEventListeners(popupCloseButton) {
-        popupCloseButton.addEventListener('click', () => {
+    _handleByCross = (event) => {
+        if (event.target.classList.contains('popup__close')) {
             this.close();
-        });
-    }
+        }
+    };
+
+    // setEventListeners(popupCloseButton) {
+    //     popupCloseButton.addEventListener('click', () => { this.close(); });
+    // }
+    setEventListeners() {
+        // popupCloseButton.addEventListener('click', () => { this.close(); });
+        this._popupSelector.addEventListener('click', this._handleByCross);
+        document.removeEventListener('keyup', this._handleEscClose);
+        this._popupSelector.removeEventListener('click', this._handleByOverlayClose);
+    };
 }
 
 

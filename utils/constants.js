@@ -43,3 +43,6 @@ export const profileTitle = document.querySelector('.profile__title');
 export const profileParagraph = document.querySelector('.profile__paragraph');
 export const nameField = document.querySelector('.popup__input_type_name');
 export const occupationField = document.querySelector('.popup__input_type_title');
+export const formTypeEdit = document.querySelector('.popup__form_type_edit-profile');
+export const formTypeAddPhoto = document.querySelector('.popup__form_type_add-photo');
+export const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
