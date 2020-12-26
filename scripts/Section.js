@@ -11,7 +11,12 @@ export class Section {
         this._renderedItems.forEach(item => this._renderer(item))
     }
     
-    addItem(element) {
-        this._container.append(element);
+    addItem(element, isPrepend) {
+        // this._container.append(element);
+        if (isPrepend) {
+            this._container.prepend(element);
+        } else {
+            this._container.append(element);
+        }
     }
 }

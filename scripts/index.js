@@ -43,7 +43,9 @@ import {
     occupationField,
     formTypeEdit,
     formTypeAddPhoto,
-    buttonTypeEdit
+    buttonTypeEdit,
+    elementImage,
+    elementTitle
 } from '../utils/constants.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
@@ -69,7 +71,7 @@ const cardsList = new Section({
 
         const cardElement = card.generateCard();
         
-        cardsList.addItem(cardElement);
+        cardsList.addItem(cardElement, false);
     },
 },
 elements
@@ -196,15 +198,49 @@ BigPhoto.setEventListeners();
 const popupEditForm = new PopupWithForm ({
     popupSelector: popupEditProfile,
     handleSubmitForm: (data) => {
-        // console.log(data);
+        console.log(data);
         userInfo.setUserInfo({
             name: data["profileName"],
             occupation: data["occupation"]
         });
+
     }
 });
 popupEditForm.setEventListeners();
 
+
+
+
+
+
+
+
+const popupAddPhotoForm = new PopupWithForm ({
+    popupSelector: popupAddPhoto,
+    handleSubmitForm: (data) => {
+        // console.log(data);
+        const card = new Card({
+            data: {
+                name: data["place"],
+                link: data["photo"]
+            },
+            handleCardClick: () => {
+                console.log(data);
+                const BigPhoto = new PopupWithImage({
+                    name: data["place"],
+                    link: data["photo"]
+                }, popupBigPhoto);
+                BigPhoto.open();
+            }
+        },'#card-template');
+
+        const cardElement = card.generateCard();
+        cardsList.addItem(cardElement, true);   
+
+        
+    }
+});
+popupAddPhotoForm.setEventListeners();
 
 
 
