@@ -22,8 +22,8 @@
 // const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 // const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
 
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
 import { 
     initialCards,
     elements,
@@ -41,11 +41,11 @@ import {
     buttonTypeEdit,
     buttonTypeСreate
 } from '../utils/constants.js';
-import { Section } from './Section.js';
-import { Popup } from './Popup.js';
-import { PopupWithImage } from './PopupWithImage.js';
-import { UserInfo } from './UserInfo.js';
-import { PopupWithForm } from './PopupWithForm.js';
+import { Section } from '../components/Section.js';
+import { Popup } from '../components/Popup.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
 
 const cardsList = new Section({
     items: initialCards,
