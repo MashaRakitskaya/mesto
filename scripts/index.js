@@ -44,6 +44,7 @@ import {
     formTypeEdit,
     formTypeAddPhoto,
     buttonTypeEdit,
+    buttonTypeСreate,
     elementImage,
     elementTitle
 } from '../utils/constants.js';
@@ -169,8 +170,9 @@ EditProfile.setEventListeners();
 //откртие попапа добавления карточки
 const AddPhoto = new Popup(popupAddPhoto);
 addButton.addEventListener ('click', () => {
-    //перенос данных со станицы в инпуты попапа
     AddPhoto.open();
+    validateEditForm.resetForm(formTypeAddPhoto);
+    validateEditForm.disableButton(buttonTypeСreate);
 });
 //закрытие попапа добавления карточки
 AddPhoto.setEventListeners();
