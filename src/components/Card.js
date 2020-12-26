@@ -6,7 +6,6 @@ class Card {
         this._handleCardClick = handleCardClick;
 
         this._cardSelector = cardSelector;
-        
     }
 
     //получить шаблон

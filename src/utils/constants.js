@@ -45,6 +45,4 @@ export const formTypeEdit = document.querySelector('.popup__form_type_edit-profi
 export const formTypeAddPhoto = document.querySelector('.popup__form_type_add-photo');
 export const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 export const buttonTypeСreate = document.querySelector('.popup__save_type_photo');
-// export const elementImage = document.querySelector('.element__image');
-// export const elementTitle = document.querySelector('.element__title');
 
