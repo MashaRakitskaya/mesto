@@ -129,6 +129,3 @@ const validateAddForm = new FormValidator(validationConfig, '.popup__form_type_a
 validateEditForm.enableValidation();
 validateAddForm.enableValidation();
 console.log('haha');
-
-
-
