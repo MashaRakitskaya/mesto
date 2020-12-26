@@ -1,8 +1,3 @@
-// import { popupPhoto, caption, showPopup, popupBigPhoto } from './index.js';
-// import { popupPhoto, caption } from './index.js';
-// import { Popup } from './Popup.js';
-// import { initialCards,popupBigPhoto,closeBigFoto } from '../utils/constants.js';
-// import { PopupWithImage } from './PopupWithImage.js';
 class Card {
 
     constructor( { data, handleCardClick }, cardSelector) {
@@ -66,40 +61,5 @@ class Card {
         this._element.querySelector('.element__basket').closest('.element').remove();
     };
 
-    
-
 };
-
-
 export {Card};
-
-
-
-// //обработчик клика по фото
-    // _handleOpenPopupBigPhoto() {
-    //     // popupPhoto.src = this._photo;
-    //     // caption.textContent = this._title;
-    //     // const BigPhoto = new Popup(popupBigPhoto);
-    //     // BigPhoto.open();
-    //     // BigPhoto.setEventListeners(closeBigFoto);
-
-
-    //     // const BigPhoto = new PopupWithImage(initialCards, popupBigPhoto);
-    //     // BigPhoto.open();
-    //     // BigPhoto.setEventListeners(closeBigFoto);
-        
-    // };
-    //обработчик клика по фото
-    // _handleOpenPopupBigPhoto() {
-    //     // popupPhoto.src = this._photo;
-    //     // caption.textContent = this._title;
-    //     // const BigPhoto = new Popup(popupBigPhoto);
-    //     // BigPhoto.open();
-    //     // BigPhoto.setEventListeners(closeBigFoto);
-
-
-    //     // const BigPhoto = new PopupWithImage(initialCards, popupBigPhoto);
-    //     // BigPhoto.open();
-    //     // BigPhoto.setEventListeners(closeBigFoto);
-        
-    // };

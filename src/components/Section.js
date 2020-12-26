@@ -2,8 +2,6 @@ export class Section {
     constructor({ items, renderer }, containerSelector) {
         this._renderedItems = items;
         this._renderer = renderer;
-        
-        // this._container = document.querySelector(containerSelector);
         this._container = containerSelector;
     }
 
@@ -12,7 +10,6 @@ export class Section {
     }
     
     addItem(element, isPrepend) {
-        // this._container.append(element);
         if (isPrepend) {
             this._container.prepend(element);
         } else {

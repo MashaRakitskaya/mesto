@@ -81,22 +81,10 @@ export class FormValidator {
     formElement.addEventListener('submit', (event) => {
       event.preventDefault();
     });
-  
-          
+   
     this._setEventListeners(formElement, buttonElement);
   };
-
-
-  // reset(form) {
-  //   form.reset();
-  //   form.querySelectorAll('.popup__input-error').forEach((span) => {
-  //     span.textContent = '';
-  //   });
-  //   form.querySelectorAll('.popup__input').forEach((input) => {
-  //     input.classList.remove('popup__input_type_error');
-  //   });
-  // };
-
+  //ресэт форм
   resetForm(formElement) {
     formElement.reset();
     const inputList = Array.from(formElement.querySelectorAll(this._config.inputSelector));
