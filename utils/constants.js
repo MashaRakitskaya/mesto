@@ -26,7 +26,6 @@ export const initialCards = [
 ];
 
 export const elements = document.querySelector('.elements');
-// export const elements = '.elements';
 export const escape = 27;
 export const popupCloseButton = document.querySelector('.popup__close');
 export const editButton = document.querySelector('.profile__edit-button');
@@ -38,7 +37,6 @@ export const popupPhotoCloseButton = document.querySelector('.popup__close_type_
 export const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 export const popupPhoto = document.querySelector('.popup__photo');
 export const caption = document.querySelector('.popup__caption');
-// export const elementImage = document.querySelector('.element__image');
 export const profileTitle = document.querySelector('.profile__title');
 export const profileParagraph = document.querySelector('.profile__paragraph');
 export const nameField = document.querySelector('.popup__input_type_name');
@@ -47,6 +45,6 @@ export const formTypeEdit = document.querySelector('.popup__form_type_edit-profi
 export const formTypeAddPhoto = document.querySelector('.popup__form_type_add-photo');
 export const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 export const buttonTypeСreate = document.querySelector('.popup__save_type_photo');
-export const elementImage = document.querySelector('.element__image');
-export const elementTitle = document.querySelector('.element__title');
+// export const elementImage = document.querySelector('.element__image');
+// export const elementTitle = document.querySelector('.element__title');
 

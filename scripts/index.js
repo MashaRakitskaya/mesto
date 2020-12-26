@@ -1,4 +1,4 @@
-const popup = document.querySelector('.popup');
+// const popup = document.querySelector('.popup');
 // const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 // const popupAddPhoto = document.querySelector('.popup_type_add-photo');
 // const popupCloseButton = popup.querySelector('.popup__close');
@@ -7,22 +7,20 @@ const popup = document.querySelector('.popup');
 // export const profileTitle = document.querySelector('.profile__title');
 // const popupBigPhoto = document.querySelector('.popup_type_big-photo');
 // export const profileParagraph = document.querySelector('.profile__paragraph');
-
 // const editForm = document.querySelector('.popup__form');
-
-const addPhotoForm = document.querySelector('.popup__form_type_add-photo');
+// const addPhotoForm = document.querySelector('.popup__form_type_add-photo');
 // export const nameField = document.querySelector('.popup__input_type_name');
 // const titleField = popup.querySelector('.popup__input_type_title');
 // export const occupationField = document.querySelector('.popup__input_type_title');
 // const addButton = document.querySelector('.profile__add-button');
-const place = document.querySelector('.popup__input_type_place');
-const photoLink = document.querySelector('.popup__input_type_photo');
+// const place = document.querySelector('.popup__input_type_place');
+// const photoLink = document.querySelector('.popup__input_type_photo');
 // export const popupPhoto = document.querySelector('.popup__photo');
 // export const caption = document.querySelector('.popup__caption ');
 // const closeBigFoto = document.querySelector('.popup__close_type_close-big-foto');
 // const escape = 27;
 // const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
-const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
+// const buttonSaveTypePhoto = document.querySelector('.popup__save_type_photo');
 
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
@@ -33,10 +31,7 @@ import {
     addButton,
     popupEditProfile,
     popupAddPhoto,
-    popupCloseButton,
-    popupPhotoCloseButton,
     popupBigPhoto,
-    closeBigFoto,
     profileTitle,
     profileParagraph,
     nameField,
@@ -44,18 +39,13 @@ import {
     formTypeEdit,
     formTypeAddPhoto,
     buttonTypeEdit,
-    buttonTypeСreate,
-    elementImage,
-    elementTitle
+    buttonTypeСreate
 } from '../utils/constants.js';
 import { Section } from './Section.js';
 import { Popup } from './Popup.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { UserInfo } from './UserInfo.js';
 import { PopupWithForm } from './PopupWithForm.js';
-
-
-
 
 const cardsList = new Section({
     items: initialCards,
@@ -80,8 +70,91 @@ elements
 
 cardsList.renderItems();
 
+//открытие попапа редактирования профиля
+const EditProfile = new Popup(popupEditProfile);
+editButton.addEventListener('click', () => {
+    EditProfile.open();
+    validateEditForm.resetForm(formTypeEdit);
+    validateEditForm.removeDisableButton(buttonTypeEdit);
+    const currentUserInfo = userInfo.getUserInfo();
+    nameField.value = currentUserInfo.name;
+    occupationField.value = currentUserInfo.occupation;
+    
+});
+//закрытие попапа редактиования профиля
+EditProfile.setEventListeners();
 
+//откртие попапа добавления карточки
+const AddPhoto = new Popup(popupAddPhoto);
+addButton.addEventListener ('click', () => {
+    AddPhoto.open();
+    validateEditForm.resetForm(formTypeAddPhoto);
+    validateEditForm.disableButton(buttonTypeСreate);
+});
+//закрытие попапа добавления карточки
+AddPhoto.setEventListeners();
 
+//перенос данных со станицы в инпуты попапа
+const userInfo = new UserInfo({
+    nameSelector: profileTitle,
+    occupationSelector: profileParagraph
+});
+
+const BigPhoto = new Popup(popupBigPhoto);
+//закрытие попапа большого фото
+BigPhoto.setEventListeners();
+
+const popupEditForm = new PopupWithForm ({
+    popupSelector: popupEditProfile,
+    handleSubmitForm: (data) => {
+        userInfo.setUserInfo({
+            name: data["profileName"],
+            occupation: data["occupation"]
+        });
+
+    }
+});
+popupEditForm.setEventListeners();
+
+const popupAddPhotoForm = new PopupWithForm ({
+    popupSelector: popupAddPhoto,
+    handleSubmitForm: (data) => {
+        const card = new Card({
+            data: {
+                name: data["place"],
+                link: data["photo"]
+            },
+            handleCardClick: () => {
+                const BigPhoto = new PopupWithImage({
+                    name: data["place"],
+                    link: data["photo"]
+                }, popupBigPhoto);
+                BigPhoto.open();
+            }
+        },'#card-template');
+
+        const cardElement = card.generateCard();
+        cardsList.addItem(cardElement, true);   
+
+        
+    }
+});
+popupAddPhotoForm.setEventListeners();
+
+const validationConfig = {
+    // formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error',
+    buttonInvalidClass: 'popup__save_disabled'
+};
+
+const validateEditForm = new FormValidator(validationConfig, '.popup__form_type_edit-profile');
+const validateAddForm = new FormValidator(validationConfig, '.popup__form_type_add-photo');
+  
+validateEditForm.enableValidation();
+validateAddForm.enableValidation();
 
 // //по сабмиту создать новую каточку
 // addPhotoForm.addEventListener('submit', event => {
@@ -99,17 +172,11 @@ cardsList.renderItems();
 //     close();
 // });
 
-
-
-
-
 // //значение из инпутов попапа разно значениям на странице
 // function profileValue() {
 //     nameField.value = profileTitle.textContent;
 //     titleField.value = profileParagraph.textContent; 
 // };
-
-
 
 // //перенос данных со станицы в инпуты попапа
 // const userInfo = new UserInfo({
@@ -119,8 +186,6 @@ cardsList.renderItems();
 // const currentUserInfo = userInfo.getUserInfo();
 // nameField.value = currentUserInfo.name;
 // occupationField.value = currentUserInfo.occupation;
-
-
 
 // const popupEditForm = new PopupWithForm ({
 //     popupSelector: popupEditProfile,
@@ -136,7 +201,6 @@ cardsList.renderItems();
 // });
 // popupEditForm.setEventListeners();
 
-
 // //ресэт формы
 // function resetForm(form) {
 //     form.reset();
@@ -148,108 +212,6 @@ cardsList.renderItems();
 //     });
 // };
 
-
-//открытие попапа редактирования профиля
-const EditProfile = new Popup(popupEditProfile);
-editButton.addEventListener('click', () => {
-    EditProfile.open();
-    validateEditForm.resetForm(formTypeEdit);
-    validateEditForm.removeDisableButton(buttonTypeEdit);
-    const currentUserInfo = userInfo.getUserInfo();
-    nameField.value = currentUserInfo.name;
-    occupationField.value = currentUserInfo.occupation;
-    
-});
-//закрытие попапа редактиования профиля
-EditProfile.setEventListeners();
-
-
-
-
-
-//откртие попапа добавления карточки
-const AddPhoto = new Popup(popupAddPhoto);
-addButton.addEventListener ('click', () => {
-    AddPhoto.open();
-    validateEditForm.resetForm(formTypeAddPhoto);
-    validateEditForm.disableButton(buttonTypeСreate);
-});
-//закрытие попапа добавления карточки
-AddPhoto.setEventListeners();
-
-//перенос данных со станицы в инпуты попапа
-const userInfo = new UserInfo({
-    nameSelector: profileTitle,
-    occupationSelector: profileParagraph
-});
-// const currentUserInfo = userInfo.getUserInfo();
-// nameField.value = currentUserInfo.name;
-// occupationField.value = currentUserInfo.occupation;
-
-
-
-
-const BigPhoto = new Popup(popupBigPhoto);
-//закрытие попапа большого фото
-BigPhoto.setEventListeners();
-
-
-
-
-
-const popupEditForm = new PopupWithForm ({
-    popupSelector: popupEditProfile,
-    handleSubmitForm: (data) => {
-        console.log(data);
-        userInfo.setUserInfo({
-            name: data["profileName"],
-            occupation: data["occupation"]
-        });
-
-    }
-});
-popupEditForm.setEventListeners();
-
-
-
-
-
-
-
-
-const popupAddPhotoForm = new PopupWithForm ({
-    popupSelector: popupAddPhoto,
-    handleSubmitForm: (data) => {
-        // console.log(data);
-        const card = new Card({
-            data: {
-                name: data["place"],
-                link: data["photo"]
-            },
-            handleCardClick: () => {
-                console.log(data);
-                const BigPhoto = new PopupWithImage({
-                    name: data["place"],
-                    link: data["photo"]
-                }, popupBigPhoto);
-                BigPhoto.open();
-            }
-        },'#card-template');
-
-        const cardElement = card.generateCard();
-        cardsList.addItem(cardElement, true);   
-
-        
-    }
-});
-popupAddPhotoForm.setEventListeners();
-
-
-
-
-
-
-
 // //при сабмите формы редактирования профиля переносить данные из инпутов на страницу
 // editForm.addEventListener('submit', event => {
 //     event.preventDefault();
@@ -258,27 +220,10 @@ popupAddPhotoForm.setEventListeners();
 //     // closePopup(popupEditProfile);
 // });
 
-const validationConfig = {
-    // formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__save',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__input-error',
-    buttonInvalidClass: 'popup__save_disabled'
-};
-
-const validateEditForm = new FormValidator(validationConfig, '.popup__form_type_edit-profile');
-const validateAddForm = new FormValidator(validationConfig, '.popup__form_type_add-photo');
-  
-validateEditForm.enableValidation();
-validateAddForm.enableValidation();
-
 // //закрыть попап большой фотографии кликом на крестик
 // closeBigFoto.addEventListener('click', function() {
 //     closePopup(popupBigPhoto);
 // });
-
-
 
 // //открыть попап
 // export function showPopup(showPopup) {
@@ -316,11 +261,6 @@ validateAddForm.enableValidation();
 //     }
 // };
 
-
-
-
-
-
 // //открыть попап при клике на edit-button  и сделать кнопку активной
 // editButton.addEventListener('click', function() {
 //     validateEditForm.removeDisableButton(buttonTypeEdit);
@@ -333,12 +273,6 @@ validateAddForm.enableValidation();
 //     validateAddForm.disableButton(buttonSaveTypePhoto);
 //     showPopup(popupAddPhoto);
 // });
-
-
-
-
-
-
 
 // //нажать на крестик и закрыть попап редактирования профиля
 // popupCloseButton.addEventListener('click', function() {
