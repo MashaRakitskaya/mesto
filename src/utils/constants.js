@@ -45,4 +45,14 @@ export const formTypeEdit = document.querySelector('.popup__form_type_edit-profi
 export const formTypeAddPhoto = document.querySelector('.popup__form_type_add-photo');
 export const buttonTypeEdit = document.querySelector('.popup__save_type_edit');
 export const buttonTypeСreate = document.querySelector('.popup__save_type_photo');
+export const popupUpdateAvatar = document.querySelector('.popup_type_update-avatar');
+export const profileAvatar = document.querySelector('.profile__avatar');
+export const formTypeUpdateAvatar = document.querySelector('.popup__form_type_update-avatar');
+export const buttonTypeUpdateAvatar = document.querySelector('.popup__save_type_avatar');
+export const avatarField = document.querySelector('.popup__input_type_avatar-photo');
+
+
+
+
+
 

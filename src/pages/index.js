@@ -16,7 +16,12 @@ import {
     formTypeEdit,
     formTypeAddPhoto,
     buttonTypeEdit,
-    buttonTypeСreate
+    buttonTypeСreate,
+    popupUpdateAvatar,
+    profileAvatar,
+    formTypeUpdateAvatar,
+    buttonTypeUpdateAvatar,
+    avatarField
 } from '../utils/constants.js';
 import { Section } from '../components/Section.js';
 //import { Popup } from '../components/Popup.js';
@@ -106,6 +111,28 @@ const popupAddPhotoForm = new PopupWithForm ({
 });
 popupAddPhotoForm.setEventListeners();
 
+
+//открыть попап обновления аватара
+profileAvatar.addEventListener('click', () => {
+    popupUpdateAvatarForm.open();
+    validateEditForm.resetForm(formTypeUpdateAvatar);
+    validateEditForm.disableButton(buttonTypeUpdateAvatar);
+    // const currentUserInfo = userInfo.getUserInfo();
+    // avatarField.value = currentUserInfo.name;
+    // occupationField.value = currentUserInfo.occupation;
+});
+
+const popupUpdateAvatarForm  = new PopupWithForm ({
+    popupSelector: popupUpdateAvatar,
+    handleSubmitForm: (data) => {
+        console.log(data);
+        profileAvatar.src = data["avatar"];
+    }
+
+});
+popupUpdateAvatarForm.setEventListeners();
+
+
 const validationConfig = {
     // formSelector: '.popup__form',
     inputSelector: '.popup__input',
@@ -117,9 +144,12 @@ const validationConfig = {
 
 const validateEditForm = new FormValidator(validationConfig, '.popup__form_type_edit-profile');
 const validateAddForm = new FormValidator(validationConfig, '.popup__form_type_add-photo');
+const validateUpdateAvatar = new FormValidator(validationConfig, '.popup__form_type_update-avatar');
   
 validateEditForm.enableValidation();
 validateAddForm.enableValidation();
+validateUpdateAvatar.enableValidation();
+
 
 
 // fetch('https://mesto.nomoreparties.co/v1/cohort-19/users/me', {
