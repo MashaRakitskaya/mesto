@@ -74,6 +74,7 @@ const userInfo = new UserInfo({
 const popupEditForm = new PopupWithForm ({
     popupSelector: popupEditProfile,
     handleSubmitForm: (data) => {
+        console.log(data);
         userInfo.setUserInfo({
             name: data["profileName"],
             occupation: data["occupation"]
@@ -119,3 +120,14 @@ const validateAddForm = new FormValidator(validationConfig, '.popup__form_type_a
   
 validateEditForm.enableValidation();
 validateAddForm.enableValidation();
+
+
+// fetch('https://mesto.nomoreparties.co/v1/cohort-19/users/me', {
+//     headers: {
+//         authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6'
+//     }
+// })
+// .then(res => res.json())
+// .then((result) => {
+//     console.log(result);
+// }); 
