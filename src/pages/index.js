@@ -125,7 +125,7 @@ profileAvatar.addEventListener('click', () => {
 const popupUpdateAvatarForm  = new PopupWithForm ({
     popupSelector: popupUpdateAvatar,
     handleSubmitForm: (data) => {
-        console.log(data);
+        // console.log(data);
         profileAvatar.src = data["avatar"];
     }
 

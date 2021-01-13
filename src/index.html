@@ -92,6 +92,14 @@
            </div>
         </div>
 
+        <div class="popup popup_type_deleteСard">
+            <div class="popup__content popup__content_type_deleteСard">
+                <button class="popup__close popup__close_type_deleteСard" type="button"></button>
+                <h3 class="popup__title popup__title_type_deleteСard">Вы уверены?</h3>
+                <button type="submit" class="popup__save popup__save_type_deleteСard">Да</button>
+           </div>
+        </div>
+
     </div>
 
     <template id="card-template">
@@ -99,7 +107,10 @@
             <img class="element__image" src="#" alt="картинка">
             <div class="element__position">
                 <h2 class="element__title"></h2>
-                <button class="element__like" type="button"></button>
+                <div class="element__like-number">
+                    <button class="element__like" type="button"></button>
+                    <p class="element__number">1</p>
+                </div>
             </div>
             <button class="element__basket"></button>
         </article>

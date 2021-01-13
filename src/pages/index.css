@@ -19,7 +19,9 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__position/element__position.css);
 @import url(../blocks/element/__title/element__title.css);
+@import url(../blocks/element/__like-number/element__like-number.css);
 @import url(../blocks/element/__like/element__like.css);
+@import url(../blocks/element/__number/element__number.css);
 @import url(../blocks/element/__like/_pressed/element__like_pressed.css);
 @import url(../blocks/element/__basket/element__basket.css);
 
