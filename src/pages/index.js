@@ -28,6 +28,7 @@ import { Section } from '../components/Section.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
+import { Api } from '../components/Api.js';
 
 const bigPhoto = new PopupWithImage(popupBigPhoto);
 bigPhoto.setEventListeners();
@@ -161,3 +162,12 @@ validateUpdateAvatar.enableValidation();
 // .then((result) => {
 //     console.log(result);
 // }); 
+
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-19',
+    headers: {
+        authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+        'Content-Type': 'application/json'
+    }
+});
+api.getUserInformation();
