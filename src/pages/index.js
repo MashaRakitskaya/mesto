@@ -33,6 +33,82 @@ import { Api } from '../components/Api.js';
 const bigPhoto = new PopupWithImage(popupBigPhoto);
 bigPhoto.setEventListeners();
 
+// const cardsList = new Section({
+//     items: initialCards,
+//     renderer: (item) => {
+//         const card = new Card({
+//             data: item,
+//             handleCardClick: () => {
+//                 bigPhoto.open(item);
+//             }
+//         },
+//         '#card-template');
+
+//         const cardElement = card.generateCard();
+        
+//         cardsList.addItem(cardElement, false);
+//     },
+// },
+// elements
+// );
+// const cardsList = new Section({
+//     items: api.getInitialCards()
+//     .then((result) => {
+//         const initialCards = [];
+//         for(var i = 0; i < 6; i++) {
+//             initialCards.push(console.log(result[i].name));
+//             initialCards.push(console.log(result[i].link));
+            
+//         }
+//         return initialCards;
+//     }),
+//     renderer: (item) => {
+//         const card = new Card({
+//             data: item,
+//             handleCardClick: () => {
+//                 bigPhoto.open(item);
+//             }
+//         },
+//         '#card-template');
+
+//         const cardElement = card.generateCard();
+        
+//         cardsList.addItem(cardElement, false);
+//     },
+// },
+// elements
+// );
+
+// api.getInitialCards()
+// .then((item) => {
+//     const cardsList = new Section({
+//         items: item,
+//         renderer: (item) => {
+//             const card = new Card({
+//                 data: item,
+//                 handleCardClick: () => {
+//                     bigPhoto.open(item);
+//                 }
+//             },
+//             '#card-template');
+    
+//             const cardElement = card.generateCard();
+            
+//             cardsList.addItem(cardElement, false);
+//         },
+//     },
+//     elements
+//     );
+//     cardsList.renderItems();
+
+    
+//     return item;
+    
+// })
+
+
+// cardsList.renderItems();
+
 const cardsList = new Section({
     items: initialCards,
     renderer: (item) => {
@@ -51,7 +127,6 @@ const cardsList = new Section({
 },
 elements
 );
-
 cardsList.renderItems();
 
 // //открытие попапа редактирования профиля
@@ -170,4 +245,7 @@ const api = new Api({
         'Content-Type': 'application/json'
     }
 });
-api.getUserInformation();
+api.getInitialCards()
+.then((result) => {
+    console.log(result)
+})
