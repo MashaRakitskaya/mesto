@@ -48,5 +48,16 @@ export class Api {
         })
         .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
     }
+
+    removeCard(id) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-19/cards/${id}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+            }
+        })
+        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+    }
+    
 }
   

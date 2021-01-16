@@ -35,23 +35,74 @@ const api = new Api({
     token: '369f7f82-3628-418a-9ccf-d1d1496569f6'
 });
 
-const cardsList = new Section({
-    renderer: (item) => {
-        const card = new Card({
-            data: item,
-            handleCardClick: () => {
-                bigPhoto.open(item);
-            }
+//создание карт
+const createCard = (data) => {
+    const card = new Card({
+        data,
+        handleCardClick: () => {
+            bigPhoto.open(data);
         },
-        '#card-template');
-
-        const cardElement = card.generateCard();
-        
-        cardsList.addItem(cardElement, false);
+        handleBasketClick: () => {
+            api.removeCard(card.getId())
+            .then(() => card.deleteCard())
+            .catch(err => console.log('Ошибка при получении сообщений', err));
+        }
     },
-},
-elements
+    '#card-template');
+    return card.generateCard();
+};
+
+ //список карт
+const cardsList = new Section({
+    renderer: (data) => {
+        cardsList.addItem(createCard(data), false);
+    }
+}, elements
 );
+
+// const cardsList = new Section({
+//     renderer: (item) => {
+//         const card = new Card({
+//             data: item,
+//             handleCardClick: () => {
+//                 bigPhoto.open(item);
+//             }
+//         },
+//         '#card-template');
+
+//         const cardElement = card.generateCard();
+        
+//         cardsList.addItem(cardElement, false);
+//     },
+// },
+// elements
+// );
+
+// const cardsList = new Section({
+//     renderer: (item) => {
+//         const card = new Card({
+//             data: item,
+//             handleCardClick: () => {
+//                 bigPhoto.open(item);
+//             }
+//         },
+//         '#card-template');
+
+//         const cardElement = card.generateCard({...data, _id: result.id});
+        
+//         api.addCard(data)
+//         .then(result => {
+//             cardsList.addItem(cardElement, false);
+//         })
+
+//         // cardsList.addItem(cardElement, false);
+//     },
+// },
+// elements
+// );
+
+
+
 // cardsList.renderItems();
 
 api.getInitialCards()

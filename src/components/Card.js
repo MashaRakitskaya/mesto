@@ -1,11 +1,12 @@
 class Card {
 
-    constructor( { data, handleCardClick }, cardSelector) {
+    constructor( { data, handleCardClick, handleBasketClick }, cardSelector) {
         this._photo = data.link;
         this._title = data.name;
         this._handleCardClick = handleCardClick;
-
+        this._id = data._id;
         this._cardSelector = cardSelector;
+        this._handleBasketClick = handleBasketClick;
     }
 
     //получить шаблон
@@ -41,7 +42,8 @@ class Card {
         });
 
         this._element.querySelector('.element__basket').addEventListener('click', () => {
-            this._handleBasketClick();
+            this._handleBasketClick(this);
+            // this._handleBasketClick();
         });
         
         this._element.querySelector('.element__image').addEventListener('click', () => {
@@ -55,10 +57,19 @@ class Card {
         this._element.querySelector('.element__like').classList.toggle('element__like_pressed');
     };
 
-    //обработчик клика по карзине
-    _handleBasketClick() {
-        this._element.querySelector('.element__basket').closest('.element').remove();
+    // //обработчик клика по карзине
+    // _handleBasketClick() {
+    //     this._element.querySelector('.element__basket').closest('.element').remove();
+    // };
+
+    //обработчик клика по карзине  _handleBasketClick() 
+    deleteCard() {
+        this._element.remove();
+        this._element = null;
     };
 
+    getId() {
+        return this._id;
+    }
 };
 export {Card};
