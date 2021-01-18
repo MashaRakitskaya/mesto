@@ -137,7 +137,7 @@ const cardsList = new Section({
 api.getInitialCards()
 .then(result => {
     console.log(result);
-    cardsList.renderItems(result);
+    cardsList.renderItems(result, true);
 
 })
 .catch(err => console.log('Ошибка при получении сообщений', err));
@@ -228,8 +228,9 @@ const popupAddPhotoForm = new PopupWithForm ({
         //     cardsList.renderItems(result);
         // })
         .then(result => {
-            cardsList.renderItems(result);
-            cardsList.addItem(createCard({...data, _id: result.id}), false);
+            const isAppend = false;
+            cardsList.renderItems(result, isAppend);
+            cardsList.addItem(createCard({...data, _id: result.id}));
         })
         .catch(err => console.log('Ошибка при получении сообщений', err));
         // const cardElement = card.generateCard();
