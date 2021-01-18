@@ -4,11 +4,12 @@ class Card {
         this._photo = data.link;
         this._title = data.name;
         this._numberLike = data.likes.length;
+        // this._numberLike = data.likes;
         this._handleCardClick = handleCardClick;
         this._id = data._id;
         this._cardSelector = cardSelector;
         this._handleBasketClick = handleBasketClick;
-        this._owner = data.owner._id
+        this._owner = (data.owner._id  === userId);
         this._userId = userId;
         this._isLiked = false;
         this._handleLikeClick = handleLikeClick;
@@ -50,6 +51,11 @@ class Card {
             // number += 1;
         });
 
+        if(this._owner) {
+            this._element.querySelector('.element__basket').style.visibility = 'visible';
+        } else {
+            this._element.querySelector('.element__basket').style.visibility = 'hidden';
+        }
         this._element.querySelector('.element__basket').addEventListener('click', () => {
             this._handleBasketClick(this);
             // this._handleBasketClick();
@@ -101,6 +107,7 @@ class Card {
     }
 
     _likeStatus(data) {
+        this._element.querySelector('.element__number').textContent = data.likes.length;
         this._rendereLike(this._clickedLike(data.likes))
     }
 

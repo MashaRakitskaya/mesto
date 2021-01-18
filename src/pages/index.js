@@ -83,6 +83,7 @@ const createCard = (data) => {
  //список карт
 const cardsList = new Section({
     renderer: (data) => {
+        // console.log(data);
         cardsList.addItem(createCard(data), false);
     }
 }, elements
@@ -221,21 +222,15 @@ popupEditForm.setEventListeners();
 const popupAddPhotoForm = new PopupWithForm ({
     popupSelector: popupAddPhoto,
     handleSubmitForm: (data) => {
-        const card = new Card({
-            data: {
-                name: data["place"],
-                link: data["photo"]
-            },
-            handleCardClick: () => {
-                bigPhoto.open({
-                    name: data["place"],
-                    link: data["photo"]
-                });
-            }
-        },'#card-template');
-
-        const cardElement = card.generateCard();
-        cardsList.addItem(cardElement, true);
+        api.addCard({name:data.place, link:data.photo})
+        .then(result => {
+            console.log(result);
+            cardsList.renderItems(result);
+            cardsList.addItem(createCard({...data, _id: result.id}), true);  
+        })
+        .catch(err => console.log('Ошибка при получении сообщений', err));
+        // const cardElement = card.generateCard();
+        // cardsList.addItem(cardElement, true);
     }
 });
 popupAddPhotoForm.setEventListeners();

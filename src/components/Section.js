@@ -5,8 +5,16 @@ export class Section {
         this._container = containerSelector;
     }
 
+    // renderItems(items) {
+    //     items.forEach(item => this._renderer(item))
+    // }
+
     renderItems(items) {
-        items.forEach(item => this._renderer(item))
+        if(Array.isArray(items) === true) {
+            items.forEach(item => this._renderer(item))
+        } else {
+            this._renderer(items);
+        }
     }
     
     addItem(element, isPrepend) {
