@@ -51,6 +51,8 @@ export const formTypeUpdateAvatar = document.querySelector('.popup__form_type_up
 export const buttonTypeUpdateAvatar = document.querySelector('.popup__save_type_avatar');
 export const avatarField = document.querySelector('.popup__input_type_avatar-photo');
 
+// export const id = ec5a1a35ccfea78c83c3f783;
+
 
 
 

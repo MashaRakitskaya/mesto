@@ -21,7 +21,8 @@ import {
     profileAvatar,
     formTypeUpdateAvatar,
     buttonTypeUpdateAvatar,
-    avatarField
+    avatarField,
+    id
 } from '../utils/constants.js';
 import { Section } from '../components/Section.js';
 //import { Popup } from '../components/Popup.js';
@@ -46,9 +47,36 @@ const createCard = (data) => {
             api.removeCard(card.getId())
             .then(() => card.deleteCard())
             .catch(err => console.log('Ошибка при получении сообщений', err));
+        },
+        handleLikeClick: (cardId, isLiked , data) => {
+            if(isLiked === false) {
+                api.addLike(cardId)
+                .then(res => {
+                    data(res)
+                })
+                .catch(err => console.log('Ошибка при получении сообщений', err));
+            } else {
+                api.deleteLike(cardId)
+                .then(res => {
+                    data(res)
+                })
+                .catch(err => console.log('Ошибка при получении сообщений', err));
+            }
         }
     },
-    '#card-template');
+    '#card-template',
+    // console.log(userInfo.getUserInfo().id)
+    userInfo.getUserInfo().id
+    // api.getUserInformation()
+    // .then(result => {
+    //     console.log(result._id);
+    //     userInfo.getUserInfo({
+    //         id:result._id
+    //     });
+    
+    // })
+    // .catch(err => console.log('Ошибка при получении сообщений', err))
+    );
     return card.generateCard();
 };
 
@@ -142,7 +170,7 @@ api.getUserInformation()
         name: result.name,
         occupation: result.about,
         avatar: result.avatar,
-        id:result._id
+        _id: result._id
     });
 
 })
@@ -161,13 +189,35 @@ const popupEditForm = new PopupWithForm ({
         userInfo.setUserInfo({
             name: data["profileName"],
             occupation: data["occupation"],
-            avatar: data["avatar"]
+            avatar: data["avatar"],
+            // _id: data[""]
+
         });
 
     }
 });
 popupEditForm.setEventListeners();
 
+// const popupAddPhotoForm = new PopupWithForm ({
+//     popupSelector: popupAddPhoto,
+//     handleSubmitForm: (data) => {
+//         const card = new Card({
+//             data: {
+//                 name: data["place"],
+//                 link: data["photo"]
+//             },
+//             handleCardClick: () => {
+//                 bigPhoto.open({
+//                     name: data["place"],
+//                     link: data["photo"]
+//                 });
+//             }
+//         },'#card-template');
+
+//         const cardElement = card.generateCard();
+//         cardsList.addItem(cardElement, true);
+//     }
+// });
 const popupAddPhotoForm = new PopupWithForm ({
     popupSelector: popupAddPhoto,
     handleSubmitForm: (data) => {

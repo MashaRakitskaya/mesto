@@ -1,12 +1,17 @@
 class Card {
 
-    constructor( { data, handleCardClick, handleBasketClick }, cardSelector) {
+    constructor( { data, handleCardClick, handleBasketClick, handleLikeClick }, cardSelector, userId) {
         this._photo = data.link;
         this._title = data.name;
+        this._numberLike = data.likes.length;
         this._handleCardClick = handleCardClick;
         this._id = data._id;
         this._cardSelector = cardSelector;
         this._handleBasketClick = handleBasketClick;
+        this._owner = data.owner._id
+        this._userId = userId;
+        this._isLiked = false;
+        this._handleLikeClick = handleLikeClick;
     }
 
     //получить шаблон
@@ -31,6 +36,7 @@ class Card {
         this._element.querySelector('.element__title').textContent = this._title;
         image.src = this._photo;
         image.alt = this._title;
+        this._element.querySelector('.element__number').textContent = this._numberLike;
 
         return this._element;
     };
@@ -38,7 +44,10 @@ class Card {
     //установить слушателей событий
     _setEventListeners() {
         this._element.querySelector('.element__like').addEventListener('click', () => {
-            this._handleLikeClick();
+            this._handleLikeClick(this._id, this._isLiked, (data) => { this._likeStatus(data) });
+            // const number = 0;
+            // this._element.querySelector('.element__number').innerHTML = number;
+            // number += 1;
         });
 
         this._element.querySelector('.element__basket').addEventListener('click', () => {
@@ -53,9 +62,9 @@ class Card {
     };
 
     //обработчик клика по лайку
-    _handleLikeClick() {
-        this._element.querySelector('.element__like').classList.toggle('element__like_pressed');
-    };
+    // _handleLikeClick() {
+    //     this._element.querySelector('.element__like').classList.toggle('element__like_pressed');
+    // };
 
     // //обработчик клика по карзине
     // _handleBasketClick() {
@@ -71,5 +80,29 @@ class Card {
     getId() {
         return this._id;
     }
+
+    _clickedLike(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            if(arr[i]._id === this._userId) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    _rendereLike(data) {
+        if(data === true) {
+            this._element.querySelector('.element__like').classList.add('element__like_pressed');
+            this._isLiked = true
+        } else {
+            this._element.querySelector('.element__like').classList.remove('element__like_pressed');
+            this._isLiked = false
+        }
+    }
+
+    _likeStatus(data) {
+        this._rendereLike(this._clickedLike(data.likes))
+    }
+
 };
 export {Card};

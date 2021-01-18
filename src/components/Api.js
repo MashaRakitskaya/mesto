@@ -58,6 +58,28 @@ export class Api {
         })
         .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
     }
+
+    addLike(cardId) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-19/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: {
+                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+    }
+
+    deleteLike(cardId) {
+        return fetch(`https://mesto.nomoreparties.co/v1/cohort-19/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+    }
     
 }
   
