@@ -223,10 +223,13 @@ const popupAddPhotoForm = new PopupWithForm ({
     popupSelector: popupAddPhoto,
     handleSubmitForm: (data) => {
         api.addCard({name:data.place, link:data.photo})
+        // .then(result => {
+        //     console.log(result);
+        //     cardsList.renderItems(result);
+        // })
         .then(result => {
-            console.log(result);
             cardsList.renderItems(result);
-            cardsList.addItem(createCard({...data, _id: result.id}), true);  
+            cardsList.addItem(createCard({...data, _id: result.id}), false);
         })
         .catch(err => console.log('Ошибка при получении сообщений', err));
         // const cardElement = card.generateCard();
