@@ -190,8 +190,11 @@ api.getUserInformation()
 const userInfo = new UserInfo({
     nameSelector: profileTitle,
     occupationSelector: profileParagraph,
-    avatarSelector: profileAvatar
+    avatarSelector: profileAvatar,
+    // id: userId
 });
+// const userInfo = new UserInfo(profileTitle, profileParagraph, profileAvatar);
+
 
 const popupAddPhotoForm = new PopupWithForm ({
     popupSelector: popupAddPhoto,
@@ -207,34 +210,74 @@ const popupAddPhotoForm = new PopupWithForm ({
 });
 popupAddPhotoForm.setEventListeners();
 
+// api.addUserInfo()
+// .then(result => {
+//     console.log(result.name, result.about);
+//     userInfo.setUserInfo({
+//         name: result.name,
+//         about: result.about
+//     });
+//     // userInfo.setUserInfo(result.name, result.about, result.avatar, result._id);
+
+// })
+// .catch(err => console.log('Ошибка при получении сообщений', err));
+
 const popupEditForm = new PopupWithForm ({
     popupSelector: popupEditProfile,
     handleSubmitForm: (data) => {
         console.log(data);
-        // userInfo.setUserInfo({
-        //     name: data["profileName"],
-        //     occupation: data["occupation"],
-        //     avatar: data["avatar"],
-        //     // _id: data[""]
-        // });
-        userInfo.setUserInfo({
-            name: data.name,
-            occupation: data.about,
-            avatar: data.avatar,
-            _id: data._id
-
-        });
+        
+        api.addUserInfo({name: data['profileName'], about: data['occupation']})
+        .then(result => {
+            console.log(result.name, result.about);
+            // userInfo.setUserInfo(result.name, result.about, result.avatar, result._id);
+            userInfo.setUserInfo({
+                name: result.name,
+                occupation: result.about,
+                avatar: result.avatar,
+                _id: result._id
+            })
+        })
+        .catch(err => console.log('Ошибка при получении сообщений', err));
         // userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
     }
 });
 popupEditForm.setEventListeners();
 
+
+// api.addUserAvatar()
+// .then(result => {
+//     console.log(result.avatar);
+//     userInfo.setUserInfo({
+//         avatar: result.avatar
+//     });
+
+// })
+// .catch(err => console.log('Ошибка при получении сообщений', err));
+
 const popupUpdateAvatarForm  = new PopupWithForm ({
     popupSelector: popupUpdateAvatar,
     handleSubmitForm: (data) => {
-        // console.log(data);
-        profileAvatar.src = data["avatar"];
-        // avatar: data["avatar"];
+        api.addUserAvatar({avatar: data['avatar']})
+        .then(result => {
+            console.log(result.avatar);
+            // userInfo.setUserInfo(result.avatar);
+            // userInfo.setUserInfo(result.name, result.about, result.avatar, result._id);
+            // userInfo.setUserInfo({
+            //     name: result.name,
+            //     occupation: result.about,
+            //     avatar: result.avatar,
+            //     _id: result._id
+            // })
+            profileAvatar.src = result.avatar
+
+
+            // userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
+        })
+        .catch(err => console.log('Ошибка при получении сообщений', err));
+        // userInfo.setUserInfo({
+        //     avatar: data.avatar
+        // });
     }
 });
 popupUpdateAvatarForm.setEventListeners();
