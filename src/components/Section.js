@@ -9,11 +9,11 @@ export class Section {
     //     items.forEach(item => this._renderer(item))
     // }
 
-    renderItems(items, isPrepend) {
+    renderItems(items, insert) {
         if(Array.isArray(items) === true) {
-            items.forEach(item => this._renderer(item, isPrepend))
+            items.forEach(item => this._renderer(item, insert))
         } else {
-            this._renderer(items, isPrepend);
+            this._renderer(items, insert);
         }
     }
     

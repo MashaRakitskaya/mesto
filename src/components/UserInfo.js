@@ -11,6 +11,7 @@ export class UserInfo {
         return {
             name: this._nameSelector.textContent,
             occupation: this._occupationSelector.textContent,
+            avatar: this.avatar,
             id: this._id
         }
     }

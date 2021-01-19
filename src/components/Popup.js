@@ -38,4 +38,6 @@ export class Popup {
     setEventListeners() {
         this._popupSelector.addEventListener('click',this._handleByCross);
     };
+
+   
 }

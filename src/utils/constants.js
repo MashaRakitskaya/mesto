@@ -50,6 +50,8 @@ export const profileAvatar = document.querySelector('.profile__avatar');
 export const formTypeUpdateAvatar = document.querySelector('.popup__form_type_update-avatar');
 export const buttonTypeUpdateAvatar = document.querySelector('.popup__save_type_avatar');
 export const avatarField = document.querySelector('.popup__input_type_avatar-photo');
+export const popupRemoveCard = document.querySelector('.popup_type_deleteСard');
+export const basket = document.querySelector('.element__basket');
 
 // export const id = ec5a1a35ccfea78c83c3f783;
 
