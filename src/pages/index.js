@@ -24,7 +24,8 @@ import {
     avatarField,
     id,
     popupRemoveCard,
-    basket
+    basket,
+    renderLoading
 } from '../utils/constants.js';
 import { Section } from '../components/Section.js';
 //import { Popup } from '../components/Popup.js';
@@ -199,13 +200,18 @@ const userInfo = new UserInfo({
 const popupAddPhotoForm = new PopupWithForm ({
     popupSelector: popupAddPhoto,
     handleSubmitForm: (data) => {
+        renderLoading(true, buttonTypeСreate);
         api.addCard({name:data.place, link:data.photo})
         .then(result => {
            const isPrepend = true;
             cardsList.renderItems(result, isPrepend);
             // cardsList.addItem(createCard({...data, _id: result.id}), false);
         })
-        .catch(err => console.log('Ошибка при получении сообщений', err));
+        .catch(err => console.log('Ошибка при получении сообщений', err))
+        .finally(() => {
+            renderLoading(false, buttonTypeСreate);
+        })
+        
     }
 });
 popupAddPhotoForm.setEventListeners();
@@ -226,7 +232,7 @@ const popupEditForm = new PopupWithForm ({
     popupSelector: popupEditProfile,
     handleSubmitForm: (data) => {
         console.log(data);
-        
+        renderLoading(true, buttonTypeEdit);
         api.addUserInfo({name: data['profileName'], about: data['occupation']})
         .then(result => {
             console.log(result.name, result.about);
@@ -238,7 +244,10 @@ const popupEditForm = new PopupWithForm ({
                 _id: result._id
             })
         })
-        .catch(err => console.log('Ошибка при получении сообщений', err));
+        .catch(err => console.log('Ошибка при получении сообщений', err))
+        .finally(() => {
+            renderLoading(false, buttonTypeEdit);
+        })
         // userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
     }
 });
@@ -258,6 +267,7 @@ popupEditForm.setEventListeners();
 const popupUpdateAvatarForm  = new PopupWithForm ({
     popupSelector: popupUpdateAvatar,
     handleSubmitForm: (data) => {
+        renderLoading(true, buttonTypeUpdateAvatar);
         api.addUserAvatar({avatar: data['avatar']})
         .then(result => {
             console.log(result.avatar);
@@ -274,7 +284,10 @@ const popupUpdateAvatarForm  = new PopupWithForm ({
 
             // userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
         })
-        .catch(err => console.log('Ошибка при получении сообщений', err));
+        .catch(err => console.log('Ошибка при получении сообщений', err))
+        .finally(() => {
+            renderLoading(false, buttonTypeUpdateAvatar);
+        })
         // userInfo.setUserInfo({
         //     avatar: data.avatar
         // });

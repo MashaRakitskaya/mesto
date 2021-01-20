@@ -55,8 +55,16 @@ export const basket = document.querySelector('.element__basket');
 
 // export const id = ec5a1a35ccfea78c83c3f783;
 
+function renderLoading(isLoading, button) {
+    if(isLoading) {
+        // button.classList.add('spinner_visible');
+        button.textContent = 'Сохранение...'
+    } else {
+        button.textContent = button.value
+    }
+
+}
 
 
-
-
+export{renderLoading};
 
