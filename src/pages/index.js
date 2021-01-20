@@ -68,7 +68,6 @@ const createCard = (data) => {
         }
     },
     '#card-template',
-    // console.log(userInfo.getUserInfo().id)
     userInfo.getUserInfo().id
     );
     return card.generateCard();
