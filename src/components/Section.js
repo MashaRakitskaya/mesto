@@ -9,14 +9,26 @@ export class Section {
     //     items.forEach(item => this._renderer(item))
     // }
 
-    renderItems(items, insert) {
-        if(Array.isArray(items) === true) {
-            items.forEach(item => this._renderer(item, insert))
-        } else {
-            this._renderer(items, insert);
-        }
-    }
+    // renderItems(items, insert) {
+    //     if(Array.isArray(items) === true) {
+    //         items.forEach(item => this._renderer(item, insert))
+    //     } else {
+    //         this._renderer(items, insert);
+    //     }
+    // }
     
+    // addItem(element, isPrepend) {
+    //     if (isPrepend === true) {
+    //         this._container.prepend(element);
+    //     } else {
+    //         this._container.append(element);
+    //     }
+    // }
+
+
+    renderItems(items) {
+        items.forEach(item => this._renderer(item))
+    }
     addItem(element, isPrepend) {
         if (isPrepend === true) {
             this._container.prepend(element);
@@ -24,9 +36,4 @@ export class Section {
             this._container.append(element);
         }
     }
-
-
-    // addItem(element) {
-    //     this._container.prepend(element);
-    // }
 }

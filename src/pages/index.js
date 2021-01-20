@@ -25,7 +25,8 @@ import {
     id,
     popupRemoveCard,
     basket,
-    renderLoading
+    renderLoading,
+    avatarContainer
 } from '../utils/constants.js';
 import { Section } from '../components/Section.js';
 //import { Popup } from '../components/Popup.js';
@@ -127,9 +128,9 @@ const createCard = (data) => {
 
  //список карт
 const cardsList = new Section({
-    renderer: (data, insert) => {
+    renderer: (data) => {
         // console.log(data);
-        cardsList.addItem(createCard(data), insert);
+        cardsList.addItem(createCard(data), false);
     }
 }, elements
 );
@@ -138,7 +139,7 @@ const cardsList = new Section({
 api.getInitialCards()
 .then(result => {
     console.log(result);
-    cardsList.renderItems(result, false);
+    cardsList.renderItems(result);
 })
 .catch(err => console.log('Ошибка при получении сообщений', err));
 
@@ -165,7 +166,7 @@ addButton.addEventListener ('click', () => {
 });
 
 //открыть попап обновления аватара
-profileAvatar.addEventListener('click', () => {
+avatarContainer.addEventListener('click', () => {
     popupUpdateAvatarForm.open();
     validateEditForm.resetForm(formTypeUpdateAvatar);
     validateEditForm.disableButton(buttonTypeUpdateAvatar);
@@ -203,8 +204,8 @@ const popupAddPhotoForm = new PopupWithForm ({
         renderLoading(true, buttonTypeСreate);
         api.addCard({name:data.place, link:data.photo})
         .then(result => {
-           const isPrepend = true;
-            cardsList.renderItems(result, isPrepend);
+            // cardsList.renderItems(result);
+            cardsList.addItem(createCard(result), true);
             // cardsList.addItem(createCard({...data, _id: result.id}), false);
         })
         .catch(err => console.log('Ошибка при получении сообщений', err))

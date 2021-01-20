@@ -52,6 +52,8 @@ export const buttonTypeUpdateAvatar = document.querySelector('.popup__save_type_
 export const avatarField = document.querySelector('.popup__input_type_avatar-photo');
 export const popupRemoveCard = document.querySelector('.popup_type_deleteСard');
 export const basket = document.querySelector('.element__basket');
+export const avatarContainer = document.querySelector('.profile__avatar-container');
+
 
 // export const id = ec5a1a35ccfea78c83c3f783;
 
