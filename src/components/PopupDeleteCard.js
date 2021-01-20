@@ -3,7 +3,7 @@ export class PopupDeleteCard extends Popup {
     constructor(popupSelector) {
         super(popupSelector);
         this._popupSelector = popupSelector;
-        this._popupElement = this._popupSelector.querySelector('.popup__form_type__deleteСard');
+        this._popupElement = this._popupSelector.querySelector('.popup__form_type_deleteСard');
     }
 
     setSubmitAction(action) {
