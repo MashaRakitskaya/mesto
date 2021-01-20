@@ -1,30 +1,3 @@
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 export const elements = document.querySelector('.elements');
 export const escape = 27;
 export const popupCloseButton = document.querySelector('.popup__close');
@@ -53,20 +26,12 @@ export const avatarField = document.querySelector('.popup__input_type_avatar-pho
 export const popupRemoveCard = document.querySelector('.popup_type_deleteСard');
 export const basket = document.querySelector('.element__basket');
 export const avatarContainer = document.querySelector('.profile__avatar-container');
-
-
-// export const id = ec5a1a35ccfea78c83c3f783;
-
 function renderLoading(isLoading, button) {
     if(isLoading) {
-        // button.classList.add('spinner_visible');
         button.textContent = 'Сохранение...'
     } else {
         button.textContent = button.value
     }
-
 }
-
-
 export{renderLoading};
 

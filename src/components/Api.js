@@ -3,11 +3,12 @@ export class Api {
         this._address = address;
         this._token = token;
     }
-  
+
+    // получить карточки с сервера
     getInitialCards() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-19/cards', {
+        return fetch(`${this._address}/cards`, {
             headers: {
-            authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6'
+            authorization: this._token
             }
         })
         .then(response => {
@@ -19,10 +20,11 @@ export class Api {
         })
     }
 
+    //получить информацию о пользователе с сервера
     getUserInformation() {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-19/users/me ', {
+        return fetch(`${this._address}/users/me`, {
             headers: {
-            authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6'
+            authorization: this._token
             }
         })
         .then(response => {
@@ -34,11 +36,12 @@ export class Api {
         })  
     }
 
+    //добавление карточки на сервер
     addCard(data) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-19/cards', {
+        return fetch(`${this._address}/cards`, {
             method: 'POST',
             headers: {
-                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+                authorization: this._token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -49,44 +52,47 @@ export class Api {
         .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
     }
 
+    //удаление карочек с сервера
     removeCard(id) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-19/cards/${id}`, {
+        return fetch(`${this._address}/cards/${id}`, {
             method: 'DELETE',
             headers: {
-                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+                authorization: this._token,
             }
         })
         .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
     }
 
+    //добавить лайк карточке на сервер
     addLike(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-19/cards/likes/${cardId}`, {
+        return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'PUT',
             headers: {
-                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+                authorization: this._token,
                 'Content-Type': 'application/json'
             }
         })
         .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
     }
 
+    //удалить лайк с сервера
     deleteLike(cardId) {
-        return fetch(`https://mesto.nomoreparties.co/v1/cohort-19/cards/likes/${cardId}`, {
+        return fetch(`${this._address}/cards/likes/${cardId}`, {
             method: 'DELETE',
             headers: {
-                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+                authorization: this._token,
                 'Content-Type': 'application/json'
             }
         })
         .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
     }
 
-
+    //добавить информацию о пользователе на сервер
     addUserInfo(data) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-19/users/me', {
+        return fetch(`${this._address}/users/me`, {
             method: 'PATCH',
             headers: {
-                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+                authorization: this._token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -99,11 +105,12 @@ export class Api {
         .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
     }
     
+    //добавить аваторку на сервер 
     addUserAvatar(data) {
-        return fetch('https://mesto.nomoreparties.co/v1/cohort-19/users/me/avatar', {
+        return fetch(`${this._address}/users/me/avatar`, {
         method: 'PATCH',
             headers: {
-                authorization: '369f7f82-3628-418a-9ccf-d1d1496569f6',
+                authorization: this._token,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -113,6 +120,5 @@ export class Api {
         })
         .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
     }
-
 }
   

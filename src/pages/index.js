@@ -2,7 +2,6 @@ import './index.css';
 import { Card } from '../components/Card.js';
 import { FormValidator } from '../components/FormValidator.js';
 import { 
-    initialCards,
     elements,
     editButton,
     addButton,
@@ -21,67 +20,16 @@ import {
     profileAvatar,
     formTypeUpdateAvatar,
     buttonTypeUpdateAvatar,
-    avatarField,
-    id,
     popupRemoveCard,
-    basket,
     renderLoading,
     avatarContainer
 } from '../utils/constants.js';
 import { Section } from '../components/Section.js';
-//import { Popup } from '../components/Popup.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { UserInfo } from '../components/UserInfo.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { Api } from '../components/Api.js';
 import { PopupDeleteCard } from '../components/PopupDeleteCard.js';
-// const cardsList = new Section({
-//     renderer: (item) => {
-//         const card = new Card({
-//             data: item,
-//             handleCardClick: () => {
-//                 bigPhoto.open(item);
-//             }
-//         },
-//         '#card-template');
-
-//         const cardElement = card.generateCard();
-        
-//         cardsList.addItem(cardElement, false);
-//     },
-// },
-// elements
-// );
-
-// const cardsList = new Section({
-//     renderer: (item) => {
-//         const card = new Card({
-//             data: item,
-//             handleCardClick: () => {
-//                 bigPhoto.open(item);
-//             }
-//         },
-//         '#card-template');
-
-//         const cardElement = card.generateCard({...data, _id: result.id});
-        
-//         api.addCard(data)
-//         .then(result => {
-//             cardsList.addItem(cardElement, false);
-//         })
-
-//         // cardsList.addItem(cardElement, false);
-//     },
-// },
-// elements
-// );
-
-// cardsList.renderItems();
-
-// basket.addEventListener('click', () => {
-//     popupDeleteCard.open();
-//     validateEditForm.removeDisableButton(popupDeleteCard);
-// })
 
 const api = new Api({
     address: 'https://mesto.nomoreparties.co/v1/cohort-19',
@@ -100,7 +48,7 @@ const createCard = (data) => {
             popupDeleteCard.setSubmitAction(() => {
                 api.removeCard(card.getId())
                 .then(() => card.deleteCard())
-                .catch(err => console.log('Ошибка при получении сообщений', err));
+                .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
             });
         },
         handleLikeClick: (cardId, isLiked , data) => {
@@ -109,13 +57,13 @@ const createCard = (data) => {
                 .then(res => {
                     data(res)
                 })
-                .catch(err => console.log('Ошибка при получении сообщений', err));
+                .catch(err => console.log(`Ошибка при добавлении лайка ${err}`));
             } else {
                 api.deleteLike(cardId)
                 .then(res => {
                     data(res)
                 })
-                .catch(err => console.log('Ошибка при получении сообщений', err));
+                .catch(err => console.log(`Ошибка при удалении лайка ${err}`));
             }
         }
     },
@@ -126,7 +74,7 @@ const createCard = (data) => {
     return card.generateCard();
 };
 
- //список карт
+ //добавление списка карт на страницу
 const cardsList = new Section({
     renderer: (data) => {
         // console.log(data);
@@ -135,14 +83,13 @@ const cardsList = new Section({
 }, elements
 );
 
-//данные для карт
+//данные для карт с сервера
 api.getInitialCards()
 .then(result => {
-    console.log(result);
+    // console.log(result);
     cardsList.renderItems(result);
 })
-.catch(err => console.log('Ошибка при получении сообщений', err));
-
+.catch(err => console.log(`Ошибка выгрузки карточек ${err}`));
 
 const bigPhoto = new PopupWithImage(popupBigPhoto);
 bigPhoto.setEventListeners();
@@ -155,7 +102,6 @@ editButton.addEventListener('click', () => {
     const currentUserInfo = userInfo.getUserInfo();
     nameField.value = currentUserInfo.name;
     occupationField.value = currentUserInfo.occupation;
-    
 });
 
 //откртие попапа добавления карточки
@@ -170,74 +116,58 @@ avatarContainer.addEventListener('click', () => {
     popupUpdateAvatarForm.open();
     validateEditForm.resetForm(formTypeUpdateAvatar);
     validateEditForm.disableButton(buttonTypeUpdateAvatar);
-    // const currentUserInfo = userInfo.getUserInfo();
-    // avatarField.value = currentUserInfo.name;
-    // occupationField.value = currentUserInfo.occupation;
 });
 
+//получаем информацию о пользователе с сервера
 api.getUserInformation()
 .then(result => {
-    console.log(result);
+    // console.log(result);
     userInfo.setUserInfo({
         name: result.name,
         occupation: result.about,
         avatar: result.avatar,
         _id: result._id
     });
-    // userInfo.setUserInfo(result.name, result.about, result.avatar, result._id);
-
 })
-.catch(err => console.log('Ошибка при получении сообщений', err));
+.catch(err => console.log(`Ошибка получения информации о пользователе ${err}`));
 
 const userInfo = new UserInfo({
     nameSelector: profileTitle,
     occupationSelector: profileParagraph,
-    avatarSelector: profileAvatar,
-    // id: userId
+    avatarSelector: profileAvatar
 });
-// const userInfo = new UserInfo(profileTitle, profileParagraph, profileAvatar);
 
-
+//попап добавления карточки на станицу
 const popupAddPhotoForm = new PopupWithForm ({
     popupSelector: popupAddPhoto,
     handleSubmitForm: (data) => {
         renderLoading(true, buttonTypeСreate);
+
+        //добавляем на сервер карточку
         api.addCard({name:data.place, link:data.photo})
         .then(result => {
-            // cardsList.renderItems(result);
             cardsList.addItem(createCard(result), true);
             // cardsList.addItem(createCard({...data, _id: result.id}), false);
         })
-        .catch(err => console.log('Ошибка при получении сообщений', err))
+        .catch(err => console.log(`Ошибка добавления карточки ${err}`))
         .finally(() => {
             renderLoading(false, buttonTypeСreate);
         })
-        
     }
 });
 popupAddPhotoForm.setEventListeners();
 
-// api.addUserInfo()
-// .then(result => {
-//     console.log(result.name, result.about);
-//     userInfo.setUserInfo({
-//         name: result.name,
-//         about: result.about
-//     });
-//     // userInfo.setUserInfo(result.name, result.about, result.avatar, result._id);
-
-// })
-// .catch(err => console.log('Ошибка при получении сообщений', err));
-
+//попоп редактирования информации профиля
 const popupEditForm = new PopupWithForm ({
     popupSelector: popupEditProfile,
     handleSubmitForm: (data) => {
-        console.log(data);
+        // console.log(data);
         renderLoading(true, buttonTypeEdit);
+
+        //добавляем на сервер информацию
         api.addUserInfo({name: data['profileName'], about: data['occupation']})
         .then(result => {
-            console.log(result.name, result.about);
-            // userInfo.setUserInfo(result.name, result.about, result.avatar, result._id);
+            // console.log(result.name, result.about);
             userInfo.setUserInfo({
                 name: result.name,
                 occupation: result.about,
@@ -245,26 +175,15 @@ const popupEditForm = new PopupWithForm ({
                 _id: result._id
             })
         })
-        .catch(err => console.log('Ошибка при получении сообщений', err))
+        .catch(err => console.log(`Ошибка редактирования информации о пользователе ${err}`))
         .finally(() => {
             renderLoading(false, buttonTypeEdit);
         })
-        // userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
     }
 });
 popupEditForm.setEventListeners();
 
-
-// api.addUserAvatar()
-// .then(result => {
-//     console.log(result.avatar);
-//     userInfo.setUserInfo({
-//         avatar: result.avatar
-//     });
-
-// })
-// .catch(err => console.log('Ошибка при получении сообщений', err));
-
+//попап редактирования аватарки профиля
 const popupUpdateAvatarForm  = new PopupWithForm ({
     popupSelector: popupUpdateAvatar,
     handleSubmitForm: (data) => {
@@ -272,31 +191,15 @@ const popupUpdateAvatarForm  = new PopupWithForm ({
         api.addUserAvatar({avatar: data['avatar']})
         .then(result => {
             console.log(result.avatar);
-            // userInfo.setUserInfo(result.avatar);
-            // userInfo.setUserInfo(result.name, result.about, result.avatar, result._id);
-            // userInfo.setUserInfo({
-            //     name: result.name,
-            //     occupation: result.about,
-            //     avatar: result.avatar,
-            //     _id: result._id
-            // })
             profileAvatar.src = result.avatar
-
-
-            // userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
         })
-        .catch(err => console.log('Ошибка при получении сообщений', err))
+        .catch(err => console.log(`Ошибка редактирования аватарки${err}`))
         .finally(() => {
             renderLoading(false, buttonTypeUpdateAvatar);
         })
-        // userInfo.setUserInfo({
-        //     avatar: data.avatar
-        // });
     }
 });
 popupUpdateAvatarForm.setEventListeners();
-
-
 
 const popupDeleteCard = new PopupDeleteCard (popupRemoveCard)
 popupDeleteCard.setEventListeners();
@@ -316,24 +219,3 @@ const validateUpdateAvatar = new FormValidator(validationConfig, '.popup__form_t
 validateEditForm.enableValidation();
 validateAddForm.enableValidation();
 validateUpdateAvatar.enableValidation();
-
-
-// const popupAddPhotoForm = new PopupWithForm ({
-//     popupSelector: popupAddPhoto,
-//     handleSubmitForm: (data) => {
-//         const card = new Card({
-//             data: {
-//                 name: data["place"],
-//                 link: data["photo"]
-//             },
-//             handleCardClick: () => {
-//                 bigPhoto.open({
-//                     name: data["place"],
-//                     link: data["photo"]
-//                 });
-//             }
-//         },'#card-template');
-//         const cardElement = card.generateCard();
-//         cardsList.addItem(cardElement, true);
-//     }
-// });

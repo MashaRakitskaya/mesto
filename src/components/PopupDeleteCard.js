@@ -21,6 +21,5 @@ export class PopupDeleteCard extends Popup {
     
     close() {
         super.close();
-        // this._popupElement.reset();
     }
 }
