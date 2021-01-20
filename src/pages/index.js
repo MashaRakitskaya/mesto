@@ -76,7 +76,6 @@ const createCard = (data) => {
  //добавление списка карт на страницу
 const cardsList = new Section({
     renderer: (data) => {
-        // console.log(data);
         cardsList.addItem(createCard(data), false);
     }
 }, elements
