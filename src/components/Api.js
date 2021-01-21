@@ -85,8 +85,6 @@ export class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                // name: 'Marie Skłodowska Curie',
-                // about: 'Physicist and Chemist'
                 name: data.name,
                 about: data.about
             })
@@ -103,7 +101,6 @@ export class Api {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                // avatar: 'https://pictures.s3.yandex.net/frontend-developer/common/ava.jpg'
                 avatar: data.avatar
             })
         })

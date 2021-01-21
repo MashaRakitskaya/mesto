@@ -110,7 +110,6 @@ avatarContainer.addEventListener('click', () => {
 
 Promise.all([api.getUserInformation(), api.getInitialCards()])
 .then((result) => {
-    // userInfo.setUserInfo(result[0]);
     userInfo.setUserInfo({
         name: result[0].name,
         occupation: result[0].about,
