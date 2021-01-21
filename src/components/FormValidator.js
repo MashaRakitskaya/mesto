@@ -2,6 +2,7 @@ export class FormValidator {
   constructor(config, formSelector) {
       this._config = config;
       this._formSelector = formSelector;
+      this._inputSelector = config.inputSelector;
   };
 
   _showError(formElement, inputElement, errorMessage) {
@@ -48,7 +49,7 @@ export class FormValidator {
 
   //установить слушателей событий
   _setEventListeners(formElement, buttonElement) {
-    const inputList = Array.from(formElement.querySelectorAll(this._config.inputSelector));
+    const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
 
     this._toggleButtonState(inputList, buttonElement);
 
@@ -87,7 +88,7 @@ export class FormValidator {
   //ресэт форм
   resetForm(formElement) {
     formElement.reset();
-    const inputList = Array.from(formElement.querySelectorAll(this._config.inputSelector));
+    const inputList = Array.from(formElement.querySelectorAll(this._inputSelector));
     inputList.forEach((inputElement) => {
       this._hideError(formElement, inputElement);
     })

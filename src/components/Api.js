@@ -11,13 +11,8 @@ export class Api {
             authorization: this._token
             }
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-
-            return Promise.reject(`Ошибка ${response.status}`)
-        })
+        .then(response => this._checkAnswerCorrectness(response))
+        
     }
 
     //получить информацию о пользователе с сервера
@@ -27,13 +22,7 @@ export class Api {
             authorization: this._token
             }
         })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-
-            return Promise.reject(`Ошибка ${response.status}`)
-        })  
+        .then(response => this._checkAnswerCorrectness(response)) 
     }
 
     //добавление карточки на сервер
@@ -49,7 +38,7 @@ export class Api {
                 link: data.link
             })
         })
-        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+        .then(response => this._checkAnswerCorrectness(response))
     }
 
     //удаление карочек с сервера
@@ -60,7 +49,7 @@ export class Api {
                 authorization: this._token,
             }
         })
-        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+        .then(response => this._checkAnswerCorrectness(response))
     }
 
     //добавить лайк карточке на сервер
@@ -72,7 +61,7 @@ export class Api {
                 'Content-Type': 'application/json'
             }
         })
-        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+        .then(response => this._checkAnswerCorrectness(response))
     }
 
     //удалить лайк с сервера
@@ -84,7 +73,7 @@ export class Api {
                 'Content-Type': 'application/json'
             }
         })
-        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+        .then(response => this._checkAnswerCorrectness(response))
     }
 
     //добавить информацию о пользователе на сервер
@@ -102,7 +91,7 @@ export class Api {
                 about: data.about
             })
         })
-        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+        .then(response => this._checkAnswerCorrectness(response))
     }
     
     //добавить аваторку на сервер 
@@ -118,7 +107,15 @@ export class Api {
                 avatar: data.avatar
             })
         })
-        .then(result => result.ok ? result.json() : Promise.reject(`Ошибка ${result.status}`))
+        .then(response => this._checkAnswerCorrectness(response))
+    }
+
+    _checkAnswerCorrectness(response) {
+        if (response.ok) {
+            return response.json();
+        }
+
+        return Promise.reject(`Ошибка ${response.status}`)
     }
 }
   

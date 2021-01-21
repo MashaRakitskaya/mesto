@@ -51,17 +51,17 @@ const createCard = (data) => {
                 .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
             });
         },
-        handleLikeClick: (cardId, isLiked , data) => {
+        handleLikeClick: (cardId, isLiked) => {
             if(isLiked === false) {
                 api.addLike(cardId)
                 .then(res => {
-                    data(res)
+                    card.likeStatus(res);
                 })
                 .catch(err => console.log(`Ошибка при добавлении лайка ${err}`));
             } else {
                 api.deleteLike(cardId)
                 .then(res => {
-                    data(res)
+                    card.likeStatus(res);
                 })
                 .catch(err => console.log(`Ошибка при удалении лайка ${err}`));
             }
@@ -80,14 +80,6 @@ const cardsList = new Section({
     }
 }, elements
 );
-
-//данные для карт с сервера
-api.getInitialCards()
-.then(result => {
-    // console.log(result);
-    cardsList.renderItems(result);
-})
-.catch(err => console.log(`Ошибка выгрузки карточек ${err}`));
 
 const bigPhoto = new PopupWithImage(popupBigPhoto);
 bigPhoto.setEventListeners();
@@ -116,18 +108,18 @@ avatarContainer.addEventListener('click', () => {
     validateEditForm.disableButton(buttonTypeUpdateAvatar);
 });
 
-//получаем информацию о пользователе с сервера
-api.getUserInformation()
-.then(result => {
-    // console.log(result);
+Promise.all([api.getUserInformation(), api.getInitialCards()])
+.then((result) => {
+    // userInfo.setUserInfo(result[0]);
     userInfo.setUserInfo({
-        name: result.name,
-        occupation: result.about,
-        avatar: result.avatar,
-        _id: result._id
-    });
+        name: result[0].name,
+        occupation: result[0].about,
+        avatar: result[0].avatar,
+        _id: result[0]._id
+    });  
+    cardsList.renderItems(result[1]);
 })
-.catch(err => console.log(`Ошибка получения информации о пользователе ${err}`));
+.catch(err => console.log(`Ошибка получения информации${err}`))
 
 const userInfo = new UserInfo({
     nameSelector: profileTitle,
@@ -137,7 +129,7 @@ const userInfo = new UserInfo({
 
 //попап добавления карточки на станицу
 const popupAddPhotoForm = new PopupWithForm ({
-    popupSelector: popupAddPhoto,
+    popupElement: popupAddPhoto,
     handleSubmitForm: (data) => {
         renderLoading(true, buttonTypeСreate);
 
@@ -146,6 +138,9 @@ const popupAddPhotoForm = new PopupWithForm ({
         .then(result => {
             cardsList.addItem(createCard(result), true);
             // cardsList.addItem(createCard({...data, _id: result.id}), false);
+        })
+        .then(() => {
+            popupAddPhotoForm.close();
         })
         .catch(err => console.log(`Ошибка добавления карточки ${err}`))
         .finally(() => {
@@ -157,7 +152,7 @@ popupAddPhotoForm.setEventListeners();
 
 //попоп редактирования информации профиля
 const popupEditForm = new PopupWithForm ({
-    popupSelector: popupEditProfile,
+    popupElement: popupEditProfile,
     handleSubmitForm: (data) => {
         // console.log(data);
         renderLoading(true, buttonTypeEdit);
@@ -173,6 +168,9 @@ const popupEditForm = new PopupWithForm ({
                 _id: result._id
             })
         })
+        .then(() => {
+            popupEditForm.close();
+        })
         .catch(err => console.log(`Ошибка редактирования информации о пользователе ${err}`))
         .finally(() => {
             renderLoading(false, buttonTypeEdit);
@@ -183,13 +181,16 @@ popupEditForm.setEventListeners();
 
 //попап редактирования аватарки профиля
 const popupUpdateAvatarForm  = new PopupWithForm ({
-    popupSelector: popupUpdateAvatar,
+    popupElement: popupUpdateAvatar,
     handleSubmitForm: (data) => {
         renderLoading(true, buttonTypeUpdateAvatar);
         api.addUserAvatar({avatar: data['avatar']})
         .then(result => {
-            console.log(result.avatar);
+            // console.log(result.avatar);
             profileAvatar.src = result.avatar
+        })
+        .then(() => {
+            popupUpdateAvatarForm.close();
         })
         .catch(err => console.log(`Ошибка редактирования аватарки${err}`))
         .finally(() => {

@@ -36,19 +36,19 @@ class Card {
         this._element.querySelector('.element__number').textContent = this._numberLike.length;
         this._rendereLike(this._clickedLike(this._numberLike));
 
-        return this._element;
-    };
-    //установить слушателей событий
-    _setEventListeners() {
-        this._element.querySelector('.element__like').addEventListener('click', () => {
-            this._handleLikeClick(this._id, this._isLiked, (data) => { this._likeStatus(data) });
-        });
-
         if(this._owner) {
             this._element.querySelector('.element__basket').style.visibility = 'visible';
         } else {
             this._element.querySelector('.element__basket').style.visibility = 'hidden';
         }
+
+        return this._element;
+    };
+    //установить слушателей событий
+    _setEventListeners() {
+        this._element.querySelector('.element__like').addEventListener('click', () => {
+            this._handleLikeClick(this._id, this._isLiked);
+        });
 
         this._element.querySelector('.element__basket').addEventListener('click', () => {
             this._handleBasketClick(this);
@@ -69,12 +69,7 @@ class Card {
     };
 
     _clickedLike(arr) {
-        for (let i = 0; i < arr.length; i++) {
-            if(arr[i]._id === this._userId) {
-                return true;
-            }
-        }
-        return false;
+        return arr.some(item => item._id === this._userId);
     };
 
     _rendereLike(data) {
@@ -87,7 +82,7 @@ class Card {
         }
     };
 
-    _likeStatus(data) {
+    likeStatus(data) {
         this._element.querySelector('.element__number').textContent = data.likes.length;
         this._rendereLike(this._clickedLike(data.likes))
     };

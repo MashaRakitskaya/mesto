@@ -1,22 +1,22 @@
 import { escape } from '../utils/constants.js';
 
 export class Popup {
-    constructor(popupSelector) {
-        this._popupSelector = popupSelector;
+    constructor(popupElement) {
+        this._popupElement = popupElement;
         this._handleEscClose = this._handleEscClose.bind(this);
         this._handleByOverlayClose = this._handleByOverlayClose.bind(this);
         this._handleByCross = this._handleByCross.bind(this);
     }
     open() {
-        this._popupSelector.classList.add('popup_opened');
+        this._popupElement.classList.add('popup_opened');
         document.addEventListener('keyup', this._handleEscClose);
-        this._popupSelector.addEventListener('click', this._handleByOverlayClose);
+        this._popupElement.addEventListener('click', this._handleByOverlayClose);
     };
 
     close() {
-        this._popupSelector.classList.remove('popup_opened');
+        this._popupElement.classList.remove('popup_opened');
         document.removeEventListener('keyup', this._handleEscClose);
-        this._popupSelector.removeEventListener('click', this._handleByOverlayClose);
+        this._popupElement.removeEventListener('click', this._handleByOverlayClose);
         
     };
     _handleEscClose(event) {
@@ -36,7 +36,7 @@ export class Popup {
         }
     };
     setEventListeners() {
-        this._popupSelector.addEventListener('click',this._handleByCross);
+        this._popupElement.addEventListener('click',this._handleByCross);
     };
 
    
