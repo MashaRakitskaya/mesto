@@ -48,6 +48,9 @@ const createCard = (data) => {
             popupDeleteCard.setSubmitAction(() => {
                 api.removeCard(card.getId())
                 .then(() => card.deleteCard())
+                .then(() => {
+                    popupDeleteCard.close();
+                })
                 .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
             });
         },
