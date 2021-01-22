@@ -47,10 +47,10 @@ const createCard = (data) => {
             popupDeleteCard.open();
             popupDeleteCard.setSubmitAction(() => {
                 api.removeCard(card.getId())
-                .then(() => 
+                .then(()  => {
                     card.deleteCard(),
                     popupDeleteCard.close()
-                )
+                })
                 .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
             });
         },
