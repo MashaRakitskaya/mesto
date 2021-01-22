@@ -47,10 +47,10 @@ const createCard = (data) => {
             popupDeleteCard.open();
             popupDeleteCard.setSubmitAction(() => {
                 api.removeCard(card.getId())
-                .then(() => card.deleteCard())
-                .then(() => {
-                    popupDeleteCard.close();
-                })
+                .then(() => 
+                    card.deleteCard(),
+                    popupDeleteCard.close()
+                )
                 .catch(err => console.log(`Ошибка при удалении карточки ${err}`));
             });
         },
@@ -138,11 +138,9 @@ const popupAddPhotoForm = new PopupWithForm ({
         //добавляем на сервер карточку
         api.addCard({name:data.place, link:data.photo})
         .then(result => {
-            cardsList.addItem(createCard(result), true);
+            cardsList.addItem(createCard(result), true),
+            popupAddPhotoForm.close()
             // cardsList.addItem(createCard({...data, _id: result.id}), false);
-        })
-        .then(() => {
-            popupAddPhotoForm.close();
         })
         .catch(err => console.log(`Ошибка добавления карточки ${err}`))
         .finally(() => {
@@ -166,10 +164,8 @@ const popupEditForm = new PopupWithForm ({
                 occupation: result.about,
                 avatar: result.avatar,
                 _id: result._id
-            })
-        })
-        .then(() => {
-            popupEditForm.close();
+            }),
+            popupEditForm.close()
         })
         .catch(err => console.log(`Ошибка редактирования информации о пользователе ${err}`))
         .finally(() => {
@@ -187,10 +183,8 @@ const popupUpdateAvatarForm  = new PopupWithForm ({
         api.addUserAvatar({avatar: data['avatar']})
         .then(result => {
             // console.log(result.avatar);
-            profileAvatar.src = result.avatar
-        })
-        .then(() => {
-            popupUpdateAvatarForm.close();
+            profileAvatar.src = result.avatar,
+            popupUpdateAvatarForm.close()
         })
         .catch(err => console.log(`Ошибка редактирования аватарки${err}`))
         .finally(() => {
