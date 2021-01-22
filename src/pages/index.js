@@ -156,13 +156,11 @@ popupAddPhotoForm.setEventListeners();
 const popupEditForm = new PopupWithForm ({
     popupElement: popupEditProfile,
     handleSubmitForm: (data) => {
-        // console.log(data);
         renderLoading(true, buttonTypeEdit);
 
         //добавляем на сервер информацию
         api.addUserInfo({name: data['profileName'], about: data['occupation']})
         .then(result => {
-            // console.log(result.name, result.about);
             userInfo.setUserInfo({
                 name: result.name,
                 occupation: result.about,
