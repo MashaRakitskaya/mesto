@@ -1,4 +1,4 @@
-# Проект 4: Место JavaScript
+# Проект: Место на JavaScript
 
 [Проект на github-pages](https://masharakitskaya.github.io/mesto/)
 
