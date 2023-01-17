@@ -1,32 +1,29 @@
-# Проект: Место на JavaScript
+# Mesto, JavaScript
 
-[Проект на github-pages](https://masharakitskaya.github.io/mesto/)
+[Project on github-pages](https://masharakitskaya.github.io/mesto/)
 
-### Описание проекта:
-Интерактивная веб-страница с возможностью добавления/удаления/лайк карточек с фотографией и названием места. Так же есть возможность изменять пользовательские данные и аватар. Все данные хранятся на сервере, взаимодействие с которым происходит через API запросы. Поддерживает валидацию форм.
+### Description:
+Interactive web page with the ability to add/remove/like cards with a photo and the name of the place. It is also possible to change user data and avatar. All data is stored on the server, which is interacted with via API requests. Supports form validation.
 
-### Технологии проекта:
+### Technologies:
 * HTML & CSS
 * JavaScript
 * DOM
 
-### Инструменты:
-* Figma
+### Functionality:
+* The file structure of the project according to the rules of Nested BEM
+* Grid Layout and Flex Layout
+* Adaptive layout 
+* All links react on hover
+* Likes
+* Smooth opening and closing of popups
+* The ability to add and remove cards. You can only delete cards created by the user
+* Validation of forms
+* Visualization of the loading process
 
-### Функциональность:
-* Файловая структура проекта по правилам Nested БЭМ
-* Grid Layout и Flex-вёрстка
-* Адаптивность 
-* Все ссылки реагируют при наведении
-* Лайк карточки
-* Плавное открытие и закрытие попапов
-* Возможность добавлять и удалять карточки
-* Валидация форм
-* Визуализация процесса загрузки
+### Installation:
+* download the code
 
-### Установка:
-* скачай код
-
-   в корне папки с кодом:
-* `npm i` – установить зависимости проекта 
-* `npm run dev` - открой проект в браузере
+   in the root of the folder with the code:
+* `npm i` – install project dependencies
+* `npm run dev` - open the project in the browser
